@@ -3,18 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link id="theme" rel="stylesheet" href="css/color.css" />
+    <link id="theme" rel="stylesheet" href="../css/color.css" />
     <title>Sri Sathya Sai Vidhya Vahini</title>
   </head>
   <body>
     <div class="home-button-container">
-      <a href="home.html" class="home-link" aria-label="Home">
-       <img src="./assets/home-7-16.png" alt="Home" width="30" height="30">
+      <a href="../home.html" class="home-link" aria-label="Home">
+       <img src="./../assets/home-7-16.png" alt="Home" width="30" height="30">
        <span class="home-text"></span>
       </a> 
     </div>
-    <div><img class="vvlogo" src="./assets/vv.png" /></div>
-    <div><img class="inclogo" src="./assets/ie.png" /></div>
+    <div><img class="vvlogo" src="./../assets/vv.png" /></div>
+    <div><img class="inclogo" src="./../assets/ie.png" /></div>
     <div class="bg1">
       <div class="upper">
         <div class="logos">
@@ -112,7 +112,7 @@
               <span>Fn</span>
             </div>
             <div class="key windows-key">
-              <img src="assets/windows-logo.png" alt="windows-key" class="win-logo">
+              <img src="../assets/windows-logo.png" alt="windows-key" class="win-logo">
             </div>
             <div class="key--bottom-right key--word key--w3" data-key="18">
               <span>Alt</span>
@@ -144,7 +144,7 @@
         </div>
       </div>
       <div class="lower">
-       <div><img class="lefthand flip lh" src="./assets/r.png" /></div>
+       <div><img class="lefthand flip lh" src="./../assets/r.png" /></div>
         <!-- Add this within .lowmid div -->
 
         <div class="lowmid">
@@ -158,11 +158,11 @@
             <span id="keysToTypeSpan">F</span>
           </p>
         </div>
-        <div><img class="lefthand rh" src="./assets/r.png" /></div>
+        <div><img class="lefthand rh" src="./../assets/r.png" /></div>
       </div>
       <div class="volume">
         <button class="volbt" onclick="toggleSound()">
-          <img class="vol" src="./assets/mute.png" />
+          <img class="vol" src="./../assets/mute.png" />
         </button>
       </div>
       <p id="soundToggle">Sound: Off</p>
@@ -173,12 +173,12 @@
     </div>
     <div>
       <div class="hidden blur"></div>
-      <div><img class="hidden mascot" src="./assets/Picture1.png" /></div>
+      <div><img class="hidden mascot" src="./../assets/Picture1.png" /></div>
       <div class="hidden congo">Congratulations!!🥳</div>
-      <a href="./level4.html" class="hidden but restart"
+      <a href="./level7.html" class="hidden but restart"
         ><span>Restart</span></a
       >
-      <a href="./level5.html" class="hidden but next"><span>Next</span></a>
+      <a href="./level8.html" class="hidden but next"><span>Next</span></a>
     </div>
     <button id="switch" tabindex="-1" >Switch Theme</button>
 
@@ -189,7 +189,7 @@
 
       btn.onclick = () => {
         mode = mode === 'color' ? 'black' : 'color';
-        theme.href = 'css/'+ mode + '.css';
+        theme.href = '../css/'+ mode + '.css';
         btn.blur();
       };
 
@@ -205,6 +205,18 @@
         if (key) key.classList.remove('active');
       });
     </script>
-    <script src="./script/script4.js"></script>
+    <script src="./../legacy/script7.js"></script>
+<script src="../js/utils/music.js"></script>
+<audio id="backgroundMusic" src="../assets/bgm.mp3" loop></audio>
+<script src="../js/utils/music.js"></script>
   </body>
+  <audio id="backgroundMusic" src="../assets/bgm.mp3" loop></audio>
+
+<script src="../legacy/script1.js"></script>
+<script src="../js/utils/music.js"></script>
+
+<audio id="backgroundMusic" src="../assets/bgm.mp3" loop></audio>
+<script src="../js/utils/music.js"></script>
+</body>
+</html>
 </html>

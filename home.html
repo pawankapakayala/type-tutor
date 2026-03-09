@@ -20,16 +20,16 @@
     </div>
 <div class="levels-container">
   <div class="levels">
-    <a href="./level1.html" class="btn btn--action"><span> Level 1</span></a>
-    <a href="./level2.html" class="btn btn--action"><span> Level 2</span></a>
-    <a href="./level3.html" class="btn btn--action"><span> Level 3</span></a>
-    <a href="./level4.html" class="btn btn--action"><span> Level 4</span></a>
-    <a href="./level5.html" class="btn btn--action"><span> level 5</span></a>
-    <a href="./level6.html" class="btn btn--action"><span> level 6</span></a>
-    <a href="./level7.html" class="btn btn--action"><span> level 7</span></a>
-    <a href="./level8.html" class="btn btn--action"><span> level 8</span></a>
-    <a href="./level9.html" class="btn btn--action"><span> level 9</span></a>
-    <a href="./level10.html" class="btn btn--action"><span> level 10</span></a>
+    <a href="./levels/level1.html" class="btn btn--action"><span> Level 1</span></a>
+    <a href="./levels/level2.html" class="btn btn--action"><span> Level 2</span></a>
+    <a href="./levels/level3.html" class="btn btn--action"><span> Level 3</span></a>
+    <a href="./levels/level4.html" class="btn btn--action"><span> Level 4</span></a>
+    <a href="./levels/level5.html" class="btn btn--action"><span> level 5</span></a>
+    <a href="./levels/level6.html" class="btn btn--action"><span> level 6</span></a>
+    <a href="./levels/level7.html" class="btn btn--action"><span> level 7</span></a>
+    <a href="./levels/level8.html" class="btn btn--action"><span> level 8</span></a>
+    <a href="./levels/level9.html" class="btn btn--action"><span> level 9</span></a>
+    <a href="./levels/level10.html" class="btn btn--action"><span> level 10</span></a>
   </div>
 </div>
 
@@ -47,50 +47,14 @@
             </audio>
             </div>
     </div>
-    <script>
-//     function bgmusic() {
-//     bgm = new Audio("bgm.mp3");
-//     bgm.play();
-// }
-// bgmusic();
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var backgroundMusic = document.getElementById("backgroundMusic");
-  
-  // Check if the audio is playing
-  if (backgroundMusic.paused) {
-    // Attempt to play the audio
-    backgroundMusic.play().catch(function(error) {
-      console.error("Failed to play audio:", error);
-      
-      // Provide a fallback mechanism (e.g., play on user interaction)
-      document.addEventListener("click", function() {
-        backgroundMusic.play().then(function() {
-          console.log("Audio playback started.");
-        }).catch(function(error) {
-          console.error("Failed to play audio:", error);
-        });
-      }, { once: true }); // Only play audio once on user interaction
-    });
-  } else {
-    console.log("Audio playback started.");
-  }
-});
-
-// function simulateDocumentClick() {
-//   var event = new MouseEvent('click', {
-//     bubbles: true,
-//     cancelable: true,
-//     view: window
-//   });
-
-//   document.dispatchEvent(event);
-// }
-
-// simulateDocumentClick();
-
-
-    </script>
+    <script src="../legacy/script1.js"></script>
+  </script>
   </body>
+  <audio id="backgroundMusic" src="../assets/bgm.mp3" loop></audio>
+
+<script src="../legacy/script1.js"></script>
+<script src="../js/utils/music.js"></script>
+
+</body>
+</html>
 </html>
