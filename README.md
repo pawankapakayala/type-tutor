@@ -1,14 +1,27 @@
-# Type Tutor
+# Refactor: Project Structure
 
-A web-based typing practice application designed to help users improve typing speed and accuracy.  
-This project is being collaboratively developed with a structured Git workflow to ensure smooth integration between team members.
+This branch focuses on reorganizing the project structure to improve maintainability, readability, and scalability.
 
 ---
 
-# Project Structure
+# Purpose of This Branch
+
+The original project structure contained all files in a single directory which made it difficult to manage as the project grew.
+
+This refactor introduces a modular structure separating:
+
+- HTML files
+- CSS styles
+- JavaScript scripts
+- Media assets
+
+---
+
+# Updated Folder Structure
 type-tutor/
 │
 ├── index.html
+│
 ├── css/
 │ └── style.css
 │
@@ -16,144 +29,81 @@ type-tutor/
 │ └── script.js
 │
 ├── assets/
-│ ├── images/
-│ └── audio/
+│ ├── audio/
+│ │ └── bgm.mp3
+│ │
+│ └── images/
 │
 └── README.md
 
 
 ---
 
-# Development Workflow
+# Changes Implemented
 
-This repository follows a **multi-branch Git workflow** to support collaborative development.
+- Organized project into modular folders
+- Updated navigation paths
+- Improved maintainability of static assets
+- Prepared codebase for future feature additions
 
-### Branch Structure
+---
 
-main → stable production version
+# Refactor Workflow
+Original Structure
 │
-└── dev → integration branch for team development
+▼
+Single Directory
 │
-├── feature-login
-├── feature-audio
-├── feature-ui
-└── refactor-structure
+▼
+Refactor Process
+│
+├── Create folders
+├── Move assets
+├── Update file paths
+│
+▼
+Modular Structure
+
+---
+
+# Example Path Fix
+
+Old path:
+src="bgm.mp3"
+
+Updated path:
+src="assets/audio/bgm.mp3"
 
 
 ---
 
-# Development Process
+# Benefits of Refactoring
 
-Each contributor should follow this workflow:
-
-### 1 Clone the repository
-
-git clone https://github.com/
-<username>/type-tutor.git
-
-
-### 2 Navigate into the project
-cd type-tutor
-
-
-### 3 Switch to dev branch
-git checkout dev
-
-
-### 4 Pull latest updates
-git pull origin dev
-
-
-### 5 Create a feature branch
-git checkout -b feature-your-module
-
-
-### 6 Make changes and commit
-git add .
-git commit -m "Add feature: typing accuracy tracker"
-
-
-### 7 Push branch
-git push origin feature-your-module
-
-
-### 8 Create Pull Request
-Create a PR:
-feature-your-module → dev
-
+- Cleaner project organization
+- Easier debugging
+- Improved scalability
+- Better collaboration for team members
 
 ---
 
-# Workflow Diagram
-Developer
-│
-│ Clone Repo
-▼
-Local Development
-│
-│ Create Feature Branch
-▼
-feature-branch
-│
-│ Commit Changes
-▼
-Push to GitHub
-│
-│ Create Pull Request
-▼
-dev branch
-│
-│ Team Testing
-▼
-main branch (stable release)
+# Testing After Refactor
 
+After restructuring the project, the following checks were performed:
 
----
-
-# Checking Changes
-
-Before pushing code:
-
-1 Run the project locally  
-2 Test navigation links  
-3 Check console errors  
-4 Ensure no broken UI components  
+- Navigation links verified
+- Media paths validated
+- JavaScript functionality tested
 
 ---
 
 # Known Issues
 
-Current issues under development:
-
-- Background music autoplay restrictions in browsers
-- Mute button not functioning correctly
-- Some navigation paths require further testing
+The mute/unmute functionality for background music is still under development and requires further debugging.
 
 ---
 
-# Contribution Guidelines
+# Next Steps
 
-- Always pull latest changes before starting work
-- Do not commit directly to `main`
-- Use meaningful commit messages
-- Test features locally before creating a pull request
-
-Example commit message:
-Fix navigation path issue in home button
-
-
----
-
-# Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Git & GitHub for version control
-
----
-
-# Contributors
-
-Project developed collaboratively by the development team.
-
+- Fix mute toggle functionality
+- Improve audio playback handling
+- Add typing analytics feature
