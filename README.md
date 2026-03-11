@@ -1,4 +1,4 @@
-# Type Tutor
+# Type Tutor...
 
 A web-based typing practice application designed to help users improve typing speed and accuracy.  
 This project is being collaboratively developed using a structured Git workflow to ensure smooth integration between team members.
