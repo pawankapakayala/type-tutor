@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Level 1 — Sri Sathya Sai Vidhya Vahini</title>
+  </head>
+  <body>
+    <!--
+      ┌─────────────────────────────────────────────────────┐
+      │  HOW THIS PAGE WORKS                                │
+      │                                                     │
+      │  This file has no HTML layout of its own.           │
+      │  The full keyboard, hands, mascot, buttons etc.     │
+      │  all live in one shared file:  template.html        │
+      │                                                     │
+      │  STEP 1 → script1.js loads first                   │
+      │           sets: stages[]  and  levelConfig{}        │
+      │                                                     │
+      │  STEP 2 → main.js loads next                        │
+      │           fetches template.html automatically       │
+      │           injects it into this page                 │
+      │           then runs the typing engine               │
+      │                                                     │
+      │  To edit the layout → open template.html            │
+      │  To edit this level's words → open script1.js       │
+      │  To edit any engine logic → open main.js            │
+      └─────────────────────────────────────────────────────┘
+    -->
+
+    <!-- Step 1: Level content (stages + config) -->
+    <script src="./legacy/script1.js"></script>
+
+    <!-- Step 2: Engine — fetches template.html then runs -->
+    <script src="./legacy/main.js"></script>
+
+  </body>
+</html>

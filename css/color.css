@@ -626,3 +626,38 @@ h1 {
 .shift-active { background: gold; }
 .caps-active { background: orange; }
 
+/* ===== Typing letter boxes ===== */
+
+#keysToTypeSpan{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:8px;
+  max-width:900px;
+  margin:auto;
+}
+
+.letterBox{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid #cccccc;
+  border-radius:6px;
+  font-size:22px;
+  font-weight:bold;
+  background:white;
+}
+
+.letterBox.correct{
+  background:#c8f7c5;
+  border-color:#4CAF50;
+  color:#2e7d32;
+}
+
+.letterBox.wrong{
+  background:#ffcdd2;
+  border-color:#e53935;
+  color:#c62828;
+}
