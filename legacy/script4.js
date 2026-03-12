@@ -1,6 +1,6 @@
-const keySound = new Audio("./assets/keypress.mp3");
-const errorSound = new Audio("./assets/wrong.mp3");
-const applaudSound = new Audio("./assets/applaud.mp3");
+const keySound = new Audio("../assets/audio/keypress.mp3");
+const errorSound = new Audio("../assets/audio/wrong.mp3");
+const applaudSound = new Audio("../assets/audio/applaud.mp3");
 
 document.addEventListener("DOMContentLoaded", function () {
   // DOM elements
@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (userInput.length < stages[currentStage].length) {
       updateHands(stages[currentStage][userInput.length]);
     } else {
-      lnum.src = "./assets/r.png";
-      rnum.src = "./assets/r.png";
+      lnum.src = "../assets/images/r.png";
+      rnum.src = "../assets/images/r.png";
     }
   }
 
@@ -150,35 +150,35 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateHands(key) {
     key = key.toUpperCase();
     // Reset both hands to default
-    lnum.src = "./assets/r.png";
-    rnum.src = "./assets/r.png";
+    lnum.src = "../assets/images/r.png";
+    rnum.src = "../assets/images/r.png";
 
     // Update left hand
     if (["V", "F", "R", "T", "G", "B"].includes(key)) {
-      lnum.src = "./assets/r2.png";
+      lnum.src = "../assets/images/r2.png";
     } else if (["E", "D", "C"].includes(key)) {
-      lnum.src = "./assets/r3.png";
+      lnum.src = "../assets/images/r3.png";
     } else if (["W", "S", "X"].includes(key)) {
-      lnum.src = "./assets/r4.png";
+      lnum.src = "../assets/images/r4.png";
     } else if (["Q", "A", "Z"].includes(key)) {
-      lnum.src = "./assets/r5.png";
+      lnum.src = "../assets/images/r5.png";
     }
 
     // Update right hand
     if (["N", "H", "Y", "U", "J", "M"].includes(key)) {
-      rnum.src = "./assets/r2.png";
+      rnum.src = "../assets/images/r2.png";
     } else if (["I", "K", "<", ","].includes(key)) {
-      rnum.src = "./assets/r3.png";
+      rnum.src = "../assets/images/r3.png";
     } else if (["O", "L", ">", "."].includes(key)) {
-      rnum.src = "./assets/r4.png";
+      rnum.src = "../assets/images/r4.png";
     } else if (["P", ";", "/", "?"].includes(key)) {
-      rnum.src = "./assets/r5.png";
+      rnum.src = "../assets/images/r5.png";
     }
 
     // Handle space key
     if (key === " ") {
-      rnum.src = "./assets/r1.png";
-      lnum.src = "./assets/r1.png";
+      rnum.src = "../assets/images/r1.png";
+      lnum.src = "../assets/images/r1.png";
     }
   }
 
@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const soundToggleElement = document.getElementById("soundToggle");
     const vol = document.querySelector(".vol");
     soundToggleElement.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
-    vol.src = soundEnabled ? "./assets/volume.png" : "./assets/mute.png";
+    vol.src = soundEnabled ? "../assets/images/volume.png" : "../assets/images/mute.png";
   };
 
   // Save results when navigating away (optional)

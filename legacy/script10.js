@@ -1,6 +1,6 @@
-const keySound = new Audio("./assets/keypress.mp3");
-const errorSound = new Audio("./assets/wrong.mp3");
-const applaudSound = new Audio("./assets/applaud.mp3");
+const keySound = new Audio("../assets/audio/keypress.mp3");
+const errorSound = new Audio("../assets/audio/wrong.mp3");
+const applaudSound = new Audio("../assets/audio/applaud.mp3");
 
 document.addEventListener("DOMContentLoaded", function () {
   // DOM elements
@@ -154,22 +154,22 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateHands(key) {
     key = key.toUpperCase();
     const leftHandKeys = {
-      "V,F,R,T,G,B": "./assets/r2.png",
-      "E,D,C": "./assets/r3.png",
-      "W,S,X": "./assets/r4.png",
-      "Q,A,Z": "./assets/r5.png",
-      " ": "./assets/r1.png"
+      "V,F,R,T,G,B": "../assets/images/r2.png",
+      "E,D,C": "../assets/images/r3.png",
+      "W,S,X": "../assets/images/r4.png",
+      "Q,A,Z": "../assets/images/r5.png",
+      " ": "../assets/images/r1.png"
     };
     const rightHandKeys = {
-      "N,H,Y,U,J,M": "./assets/r2.png",
-      "I,K,<,": "./assets/r3.png",
-      "O,L,>,.": "./assets/r4.png",
-      "P,;,/": "./assets/r5.png",
-      " ": "./assets/r1.png"
+      "N,H,Y,U,J,M": "../assets/images/r2.png",
+      "I,K,<,": "../assets/images/r3.png",
+      "O,L,>,.": "../assets/images/r4.png",
+      "P,;,/": "../assets/images/r5.png",
+      " ": "../assets/images/r1.png"
     };
 
-    leftHandImg.src = "./assets/r1.png";
-    rightHandImg.src = "./assets/r1.png";
+    leftHandImg.src = "../assets/images/r1.png";
+    rightHandImg.src = "../assets/images/r1.png";
 
     for (const [keys, src] of Object.entries(leftHandKeys)) {
       if (keys.includes(key)) leftHandImg.src = src;
@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const voiceToggleElement = document.getElementById("voiceToggle");
     const volImg = document.querySelector(".vol-img");
     voiceToggleElement.textContent = `Voice: ${voiceEnabled ? "On" : "Off"}`;
-    volImg.src = voiceEnabled ? "./assets/volume.png" : "./assets/mute.png";
+    volImg.src = voiceEnabled ? "../assets/images/volume.png" : "../assets/images/mute.png";
   };
 
   // Save results on navigation
