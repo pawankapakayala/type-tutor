@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="../js/config.js"></script>
+  <script src="js/config.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -185,41 +185,3 @@
 
 
   <button id="switch" tabindex="-1">Switch Theme</button>
-
-
-  <script>
-
-    const theme = document.getElementById('theme');
-    const btn = document.getElementById('switch');
-
-    let mode = 'color';
-
-    btn.onclick = () => {
-      mode = mode === 'color' ? 'black' : 'color';
-      theme.href = '../css/' + mode + '.css';
-      btn.blur();
-    };
-
-
-    const keys = document.querySelectorAll('.key');
-
-    document.addEventListener('keydown', e => {
-      const key = document.querySelector(`.key[data-key="${e.key.toLowerCase()}"]`);
-      if (key) key.classList.add('active');
-    });
-
-    document.addEventListener('keyup', e => {
-      const key = document.querySelector(`.key[data-key="${e.key.toLowerCase()}"]`);
-      if (key) key.classList.remove('active');
-    });
-
-  </script>
-
-
-  <script src="../legacy/script1.js"></script>
-  <script src="../utils/music.js"></script>
-
-  <audio id="backgroundMusic" src="../assets/audio/bgm.mp3" loop></audio>
-
-</body>
-</html>
