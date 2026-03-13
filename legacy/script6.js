@@ -1,6 +1,6 @@
-const keySound = new Audio("./assets/keypress.mp3");
-const errorSound = new Audio("./assets/wrong.mp3");
-const applaudSound = new Audio("./assets/applaud.mp3");
+const keySound = new Audio("../assets/audio/keypress.mp3");
+const errorSound = new Audio("../assets/audio/wrong.mp3");
+const applaudSound = new Audio("../assets/audio/applaud.mp3");
 
 document.addEventListener("DOMContentLoaded", function () {
   // DOM elements
@@ -80,8 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (userInput.length < stages[currentStage].length) {
       updateHands(stages[currentStage][userInput.length]);
     } else {
-      lnum.src = "./assets/r.png";
-      rnum.src = "./assets/r.png";
+      lnum.src = "../assets/images/r.png";
+      rnum.src = "../assets/images/r.png";
     }
   }
 
@@ -147,8 +147,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const rightShiftKey = document.querySelector('[data-key="16-R"]');
 
     // Reset hand images and shift styles
-    lnum.src = "./assets/r.png";
-    rnum.src = "./assets/r.png";
+    lnum.src = "../assets/images/r.png";
+    rnum.src = "../assets/images/r.png";
     leftShiftKey.style.backgroundColor = "";
     rightShiftKey.style.backgroundColor = "";
 
@@ -156,19 +156,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const char = key.toUpperCase();
 
     // Normal finger highlights
-    if (["V", "F", "R", "T", "G", "B"].includes(char)) lnum.src = "./assets/r2.png";
-    else if (["E", "D", "C"].includes(char)) lnum.src = "./assets/r3.png";
-    else if (["W", "S", "X"].includes(char)) lnum.src = "./assets/r4.png";
-    else if (["Q", "A", "Z"].includes(char)) lnum.src = "./assets/r5.png";
+    if (["V", "F", "R", "T", "G", "B"].includes(char)) lnum.src = "../assets/images/r2.png";
+    else if (["E", "D", "C"].includes(char)) lnum.src = "../assets/images/r3.png";
+    else if (["W", "S", "X"].includes(char)) lnum.src = "../assets/images/r4.png";
+    else if (["Q", "A", "Z"].includes(char)) lnum.src = "../assets/images/r5.png";
 
-    if (["N", "H", "Y", "U", "J", "M"].includes(char)) rnum.src = "./assets/r2.png";
-    else if (["I", "K", "<", ","].includes(char)) rnum.src = "./assets/r3.png";
-    else if (["O", "L", ">", "."].includes(char)) rnum.src = "./assets/r4.png";
-    else if (["P", ";", "/", "?"].includes(char)) rnum.src = "./assets/r5.png";
+    if (["N", "H", "Y", "U", "J", "M"].includes(char)) rnum.src = "../assets/images/r2.png";
+    else if (["I", "K", "<", ","].includes(char)) rnum.src = "../assets/images/r3.png";
+    else if (["O", "L", ">", "."].includes(char)) rnum.src = "../assets/images/r4.png";
+    else if (["P", ";", "/", "?"].includes(char)) rnum.src = "../assets/images/r5.png";
 
     if (char === " ") {
-      rnum.src = "./assets/r1.png";
-      lnum.src = "./assets/r1.png";
+      rnum.src = "../assets/images/r1.png";
+      lnum.src = "../assets/images/r1.png";
     }
 
     // ✅ Shift key indication for capital letters
@@ -179,11 +179,11 @@ document.addEventListener("DOMContentLoaded", function () {
       if (useLeftShift) {
         // Typing with right hand -> use left Shift
         leftShiftKey.style.backgroundColor = "#FFD700"; // gold highlight
-        lnum.src = "./assets/r5.png"; // left little finger
+        lnum.src = "../assets/images/r5.png"; // left little finger
       } else {
         // Typing with left hand -> use right Shift
         rightShiftKey.style.backgroundColor = "#FFD700";
-        rnum.src = "./assets/r5.png"; // right little finger
+        rnum.src = "../assets/images/r5.png"; // right little finger
       }
     }
   }
@@ -286,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const soundToggleElement = document.getElementById("soundToggle");
     const vol = document.querySelector(".vol");
     soundToggleElement.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
-    vol.src = soundEnabled ? "./assets/volume.png" : "./assets/mute.png";
+    vol.src = soundEnabled ? "../assets/images/volume.png" : "../assets/images/mute.png";
   };
 
   // Save results when navigating away

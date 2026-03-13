@@ -101,17 +101,17 @@ window.addEventListener("resize", function (e) {
 size();
 
 function con() {
-  var congoaudio = new Audio("./assets/applaud.mp3");
+  var congoaudio = new Audio("../assets/images/audio/applaud.mp3");
   congoaudio.play();
 }
 
 function pressed() {
-  var congoaudio = new Audio("./assets/keypress.mp3");
+  var congoaudio = new Audio("../assets/images/audio/keypress.mp3");
   congoaudio.play();
 }
 
 function wrong() {
-  var congoaudio = new Audio("./assets/wrong.mp3");
+  var congoaudio = new Audio("../assets/images/audio/wrong.mp3");
   congoaudio.play();
 }
 
@@ -174,19 +174,19 @@ function checkKey(key) {
     toshow == "G" ||
     toshow == "B"
   ) {
-    lnum.src = `./assets/r2.png`;
+    lnum.src = `../assets/images/audio/r2.png`;
     console.log("2");
   } else if (correctKey == "E" || correctKey == "D" || correctKey == "C") {
-    lnum.src = `./assets/r3.png`;
+    lnum.src = `../assets/images/audio/r3.png`;
     console.log("3");
   } else if (correctKey == "W" || correctKey == "S" || correctKey == "X") {
     console.log("4");
-    lnum.src = `./assets/r4.png`;
+    lnum.src = `../assets/images/audio/r4.png`;
   } else if (correctKey == "Q" || correctKey == "A" || correctKey == "Z") {
     console.log("5");
-    lnum.src = `./assets/r5.png`;
+    lnum.src = `../assets/images/audio/r5.png`;
   } else {
-    lnum.src = `./assets/r.png`;
+    lnum.src = `../assets/images/audio/r.png`;
   }
 
   if (
@@ -197,7 +197,7 @@ function checkKey(key) {
     toshow == "J" ||
     toshow == "M"
   ) {
-    rnum.src = `./assets/r2.png`;
+    rnum.src = `../assets/images/audio/r2.png`;
     console.log("r2");
   } else if (
     toshow == "I" ||
@@ -205,7 +205,7 @@ function checkKey(key) {
     toshow == "<" ||
     toshow == ","
   ) {
-    rnum.src = `./assets/r3.png`;
+    rnum.src = `../assets/images/audio/r3.png`;
     console.log("r3");
   } else if (
     toshow == "O" ||
@@ -214,7 +214,7 @@ function checkKey(key) {
     toshow == "."
   ) {
     console.log("r4");
-    rnum.src = `./assets/r4.png`;
+    rnum.src = `../assets/images/audio/r4.png`;
   } else if (
     toshow == "P" ||
     toshow == ";" ||
@@ -222,14 +222,14 @@ function checkKey(key) {
     toshow == "?"
   ) {
     console.log("r5");
-    rnum.src = `./assets/r5.png`;
+    rnum.src = `../assets/images/audio/r5.png`;
   } else {
-    rnum.src = `./assets/r.png`;
+    rnum.src = `../assets/images/audio/r.png`;
   }
 
   if (toshow === " ") {
-    rnum.src = `./assets/r1.png`;
-    lnum.src = `./assets/r1.png`;
+    rnum.src = `../assets/images/audio/r1.png`;
+    lnum.src = `../assets/images/audio/r1.png`;
   }
 
   if (correctKey === key) {
@@ -322,9 +322,9 @@ function toggleSound() {
   let vol = document.querySelector(".vol");
   soundToggleElement.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
   if (soundEnabled) {
-    vol.src = `./assets/volume.png`;
+    vol.src = "../assets/images/audio/volume.png";
   } else {
-    vol.src = "./assets/mute.png";
+    vol.src = "../assets/images/audio/mute.png";
   }
 }
 

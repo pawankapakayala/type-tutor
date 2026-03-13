@@ -1,20 +1,33 @@
-# Type Tutor...
+# Refactor: Project Structure (Updated Asset Organization)
 
-A web-based typing practice application designed to help users improve typing speed and accuracy.  
-This project is being collaboratively developed using a structured Git workflow to ensure smooth integration between team members.
+This branch focuses on **reorganizing and correcting the internal structure of the Type Tutor application** to improve maintainability, readability, and scalability.
 
----
+The goal of this refactor is to **transform the earlier modular structure into a cleaner and more organized architecture**, while also **fixing incorrect file paths and separating assets into dedicated folders** such as audio, images, and icons.
 
-# Project Overview
-
-Type Tutor is a lightweight web application that allows users to practice typing and improve accuracy.  
-The project focuses on providing a clean interface, responsive design, and modular code structure for easier collaboration.
-
-This `dev` branch serves as the **primary development and integration branch** where all features are merged and tested before moving to the stable `main` branch.
+This update ensures that the project follows **standard frontend project organization practices**, making it easier for developers to navigate, maintain, and scale the application.
 
 ---
 
-# Project Structure
+# Branch Purpose
+
+The `refactor` branch focuses on **improving the internal structure of the project without adding new features**.
+
+The main objective is to ensure that:
+
+* All project assets are stored in proper directories
+* File paths are consistent across HTML, CSS, and JavaScript
+* Developers can easily locate and manage resources
+* The project structure remains scalable for future updates
+
+This branch improves the foundation of the project so that **future development becomes more structured and maintainable**.
+
+---
+
+# Previous Project Structure
+
+Before this refactor, the project followed a basic modular structure where assets were partially organized but **not fully categorized**, and some file paths were inconsistent.
+
+Example:
 
 ```
 type-tutor/
@@ -36,251 +49,204 @@ type-tutor/
 └── README.md
 ```
 
-This modular structure ensures better maintainability and scalability of the project.
+Although this structure was an improvement over the original flat structure, **asset organization and path management still required refinement**.
 
 ---
 
-# Branch Strategy
+# Updated Refactored Project Structure
 
-The repository follows a **multi-branch development workflow** to support collaborative work.
+In this branch, the **assets directory has been further structured** to improve clarity and maintain consistency as the project grows.
 
 ```
-main  → Stable production version
+type-tutor/
 │
-└── dev  → Integration branch for development
-      │
-      ├── feature-login
-      ├── feature-audio
-      ├── feature-ui
-      ├── feature-navigation
-      └── refactor-structure
+├── index.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   └── script.js
+│
+├── assets/
+│   ├── audio/
+│   │   └── bgm.mp3
+│   │
+│   ├── images/
+│   │
+│   └── icons/
+│
+└── README.md
 ```
 
-### Branch Purpose
-
-**main**
-
-- Contains stable production-ready code
-- Only updated after full testing
-
-**dev**
-
-- Main development branch
-- All feature branches merge here first
-
-**feature branches**
-
-- Used for individual feature development
-- Example: `feature-audio`, `feature-login`
-
-**refactor-structure**
-
-- Used to improve project structure and maintainability
+This updated structure ensures that **each asset category has a dedicated location**, which simplifies development and debugging.
 
 ---
 
-# Development Workflow
+# Refactoring Changes
 
-Each contributor should follow this process to maintain a clean Git history.
+The following improvements were implemented in this branch:
 
-### 1 Clone the repository
+* Corrected incorrect or outdated file paths across the project
+* Improved the internal structure of the `assets` directory
+* Separated icons from general images for better organization
+* Verified that all HTML, CSS, and JavaScript files reference correct asset paths
+* Ensured consistent folder naming and structure
+* Cleaned up redundant or incorrect references
 
-```
-git clone https://github.com/<username>/type-tutor.git
-```
-
----
-
-### 2 Navigate into the project directory
-
-```
-cd type-tutor
-```
+These changes help maintain a **clear and scalable project architecture**.
 
 ---
 
-### 3 Switch to the development branch
+# Example Path Updates
+
+Since files were reorganized and paths corrected, several references were updated.
+
+### Audio File
+
+Old path:
 
 ```
-git checkout dev
+src="bgm.mp3"
 ```
 
----
-
-### 4 Pull the latest changes
-
-Always pull before starting work to ensure your local code is up to date.
+Updated path:
 
 ```
-git pull origin dev
+src="assets/audio/bgm.mp3"
 ```
 
 ---
 
-### 5 Create a new feature branch
+### Stylesheet
+
+Old path:
 
 ```
-git checkout -b feature-your-module
+href="style.css"
 ```
 
-Example:
+Updated path:
 
 ```
-git checkout -b feature-audio-fix
-```
-
----
-
-### 6 Implement your changes
-
-Modify the necessary files in your local environment.
-
-Example:
-
-- index.html
-- script.js
-- style.css
-
----
-
-### 7 Stage your changes
-
-```
-git add .
+href="css/style.css"
 ```
 
 ---
 
-### 8 Commit changes with a meaningful message
+### JavaScript File
+
+Old path:
 
 ```
-git commit -m "Fix navigation path issue and improve audio playback handling"
+src="script.js"
 ```
 
-Good commit messages clearly describe what was changed.
-
-Examples:
+Updated path:
 
 ```
-Add typing accuracy tracker
-Fix navigation links in homepage
-Improve background music playback logic
-Refactor folder structure for better organization
+src="js/script.js"
 ```
 
 ---
 
-### 9 Push the feature branch
+### Icons
+
+Icons are now stored separately to keep UI resources organized.
+
+Example path:
 
 ```
-git push origin feature-your-module
-```
-
----
-
-### 10 Create a Pull Request
-
-Create a pull request on GitHub:
-
-```
-feature-your-module → dev
-```
-
-After review and testing, the branch will be merged into the `dev` branch.
-
----
-
-# Git Workflow Diagram
-
-```
-Developer
-   │
-   │ Clone Repository
-   ▼
-Local Development
-   │
-   │ Create Feature Branch
-   ▼
-feature-branch
-   │
-   │ Commit Changes
-   ▼
-Push to GitHub
-   │
-   │ Create Pull Request
-   ▼
-dev branch
-   │
-   │ Team Testing
-   ▼
-main branch (stable release)
+assets/icons/icon-name.png
 ```
 
 ---
 
-# Running the Project Locally
+# Refactor Workflow
 
-You can run the project locally using any of the following methods.
+The restructuring process followed a systematic approach:
 
-### Option 1 – Open directly
+```
+Original Project
+     │
+     ▼
+Initial Modular Structure
+     │
+     ▼
+Improve Asset Organization
+     │
+     ├── css/
+     ├── js/
+     ├── assets/audio/
+     ├── assets/images/
+     └── assets/icons/
+     │
+     ▼
+Move Files Into Correct Folders
+     │
+     ▼
+Update All File Paths
+     │
+     ▼
+Test Navigation, Media, and Scripts
+```
 
-Open `index.html` in your browser.
-
-### Option 2 – Using VS Code Live Server
-
-1 Install **Live Server extension**  
-2 Right click `index.html`  
-3 Click **Open with Live Server**
-
----
-
-# Testing Checklist
-
-Before pushing your code, verify the following:
-
-- Navigation links are working
-- No JavaScript console errors
-- UI elements display correctly
-- Audio files load correctly
-- All file paths are valid
-
----
-
-# Known Issues
-
-The following issues are currently under development:
-
-- Background music autoplay restrictions in modern browsers
-- Mute button functionality is not working correctly
-- Some navigation paths require further testing
-
-These will be addressed in upcoming updates.
+This workflow ensured that **the restructuring did not break existing functionality**.
 
 ---
 
-# Contribution Guidelines
+# Benefits of This Refactor
 
-To maintain code quality and collaboration efficiency:
+This structural update provides several advantages:
 
-- Always pull the latest changes before starting work
-- Do not commit directly to `main`
-- Use feature branches for development
-- Write clear and meaningful commit messages
-- Test your code locally before pushing
-- Submit a pull request for review
+* Better organization of project files
+* Clear separation of assets
+* Easier navigation for developers
+* Improved maintainability
+* Scalability for future features
+* Reduced confusion when managing media resources
 
----
-
-# Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-- Git for version control
-- GitHub for collaboration
+This structure aligns with **common frontend development standards used in larger projects**.
 
 ---
 
-# Contributors
+# Testing After Refactor
 
-This project is developed collaboratively by the team using a structured Git workflow.
+After completing the restructuring, several checks were performed to ensure functionality remained intact:
+
+* Navigation links were tested
+* Background audio loading was verified
+* JavaScript functionality was reviewed
+* Asset loading paths were checked
+* Browser console errors were inspected
+* Local testing was performed to confirm successful page rendering
+
+These checks confirmed that **the updated file paths work correctly**.
+
+---
+
+# Contribution Notes
+
+When contributing to this project, follow the established folder structure.
+
+```
+css/            → Stylesheets
+js/             → JavaScript files
+assets/audio/   → Sound and background music
+assets/images/  → Image resources
+assets/icons/   → Interface icons
+```
+
+Always verify **file paths when adding new assets or scripts** to avoid broken references.
+
+Maintaining this structure ensures **consistency and easier collaboration** across the project.
+
+---
+
+# Summary
+
+This branch focuses entirely on **improving the internal architecture of the Type Tutor project**.
+
+No new features were introduced; instead, the goal was to create a **cleaner, more scalable, and better organized project structure** that supports future development and collaboration.
+
+This refactor ensures that the project is **easier to maintain, easier to expand, and more aligned with standard frontend development practices**.

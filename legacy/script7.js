@@ -1,6 +1,6 @@
-const keySound = new Audio("./assets/keypress.mp3");
-const errorSound = new Audio("./assets/wrong.mp3");
-const applaudSound = new Audio("./assets/applaud.mp3");
+const keySound = new Audio("../assets/audio/keypress.mp3");
+const errorSound = new Audio("../assets/audio/wrong.mp3");
+const applaudSound = new Audio("../assets/audio/applaud.mp3");
 
 document.addEventListener("DOMContentLoaded", function () {
   // DOM elements
@@ -76,8 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
     if (userInput.length < stages[currentStage].length) {
       updateHands(stages[currentStage][userInput.length]);
     } else {
-      lnum.src = "./assets/r.png";
-      rnum.src = "./assets/r.png";
+      lnum.src = "../assets/images/r.png";
+      rnum.src = "../assets/images/r.png";
     }
   }
 
@@ -140,8 +140,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateHands(key) {
   const leftShiftKey = document.querySelector('[data-key="16"]');
   const rightShiftKey = document.querySelector('[data-key="16-R"]');
-  lnum.src = "./assets/r.png";
-  rnum.src = "./assets/r.png";
+  lnum.src = "../assets/images/r.png";
+  rnum.src = "../assets/images/r.png";
   leftShiftKey.style.backgroundColor = "";
   rightShiftKey.style.backgroundColor = "";
 
@@ -150,27 +150,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // left hand
   if (["V", "F", "R", "T", "G", "B", "4", "5"].includes(char))
-    lnum.src = "./assets/r2.png"; // left index
+    lnum.src = "../assets/images/r2.png"; // left index
   else if (["E", "D", "C", "3"].includes(char))
-    lnum.src = "./assets/r3.png"; // left middle
+    lnum.src = "../assets/images/r3.png"; // left middle
   else if (["W", "S", "X", "2"].includes(char))
-    lnum.src = "./assets/r4.png"; // left ring
+    lnum.src = "../assets/images/r4.png"; // left ring
   else if (["Q", "A", "Z","1","`"].includes(char))
-    lnum.src = "./assets/r5.png"; // left pinky
+    lnum.src = "../assets/images/r5.png"; // left pinky
 
   // right hand
   if (["N", "H", "Y", "U", "J", "M", "6", "7"].includes(char))
-    rnum.src = "./assets/r2.png"; // right index
+    rnum.src = "../assets/images/r2.png"; // right index
   else if (["I", "K", "<", ",", "8"].includes(char))
-    rnum.src = "./assets/r3.png"; // right middle
+    rnum.src = "../assets/images/r3.png"; // right middle
   else if (["O", "L", ">", ".", "9"].includes(char))
-    rnum.src = "./assets/r4.png"; // right ring
+    rnum.src = "../assets/images/r4.png"; // right ring
   else if (["P", ";", "/","'","[","-","=","]","\\"].includes(char))
-    rnum.src = "./assets/r5.png"; // right pinky
+    rnum.src = "../assets/images/r5.png"; // right pinky
 
   if (char === " ") {
-    rnum.src = "./assets/r1.png";
-    lnum.src = "./assets/r1.png";
+    rnum.src = "../assets/images/r1.png";
+    lnum.src = "../assets/images/r1.png";
   }
 
   // --- NEW: Special characters that need Shift ---
@@ -194,10 +194,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (useLeftShift) {
       leftShiftKey.style.backgroundColor = "#FFD700";
-      lnum.src = "./assets/r5.png";
+      lnum.src = "../assets/images/r5.png";
     } else {
       rightShiftKey.style.backgroundColor = "#FFD700";
-      rnum.src = "./assets/r5.png";
+      rnum.src = "../assets/images/r5.png";
     }
     return; // prevent recursion loop
   }
@@ -208,10 +208,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const useLeftShift = rightHandLetters.includes(char);
     if (useLeftShift) {
       leftShiftKey.style.backgroundColor = "#FFD700";
-      lnum.src = "./assets/r5.png";
+      lnum.src = "../assets/images/r5.png";
     } else {
       rightShiftKey.style.backgroundColor = "#FFD700";
-      rnum.src = "./assets/r5.png";
+      rnum.src = "../assets/images/r5.png";
     }
   }
 }
@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const soundToggleElement = document.getElementById("soundToggle");
     const vol = document.querySelector(".vol");
     soundToggleElement.textContent = `Sound: ${soundEnabled ? "On" : "Off"}`;
-    vol.src = soundEnabled ? "./assets/volume.png" : "./assets/mute.png";
+    vol.src = soundEnabled ? "../assets/images/volume.png" : "../assets/images/mute.png";
   };
 
   // Save results when navigating away
