@@ -25,5 +25,5 @@ const levelConfig = {
   hasTimer      : false,
   colorNumbers  : false,
   hasNumberRow  : false,
-  useLetterBoxes: false,
+  useLetterBoxes: true,
 };

@@ -29,15 +29,15 @@ let virtualShift = false;
 let virtualCaps  = false;
 
 // ── Audio ─────────────────────────────────────────────────
-const keySound     = new Audio("./assets/keypress.mp3");
-const errorSound   = new Audio("./assets/wrong.mp3");
-const applaudSound = new Audio("./assets/applaud.mp3");
+const keySound     = new Audio("../assets/audio/keypress.mp3");
+const errorSound   = new Audio("../assets/audio/wrong.mp3");
+const applaudSound = new Audio("../assets/audio/applaud.mp3");
 
 // ============================================================
 //  STEP 1 — Fetch template.html and inject into page,
 //           then boot the engine.
 // ============================================================
-fetch("./template.html")
+fetch("../levels/template.html")
   .then(function (response) {
     if (!response.ok) throw new Error("template.html not found");
     return response.text();
@@ -53,7 +53,7 @@ fetch("./template.html")
     if (templateLink) {
       const existing = document.getElementById("theme");
       if (existing) {
-        existing.href = templateLink.href;
+        existing.href = '..'+templateLink.href;
       } else {
         document.head.appendChild(document.importNode(templateLink, true));
       }
@@ -215,8 +215,8 @@ function bootEngine() {
     if (userInput.length < correctText.length) {
       updateHands(correctText[userInput.length]);
     } else {
-      if (lnum) lnum.src = "./assets/r.png";
-      if (rnum) rnum.src = "./assets/r.png";
+      if (lnum) lnum.src = "../assets/images/r.png";
+      if (rnum) rnum.src = "../assets/images/r.png";
     }
   }
 
@@ -289,8 +289,8 @@ function bootEngine() {
     const leftShiftKey  = document.querySelector('[data-key="16"]');
     const rightShiftKey = document.querySelector('[data-key="16-R"]');
 
-    lnum.src = "./assets/r.png";
-    rnum.src = "./assets/r.png";
+    lnum.src = "../assets/images/r.png";
+    rnum.src = "../assets/images/r.png";
     if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "";
     if (rightShiftKey) rightShiftKey.style.backgroundColor = "";
 
@@ -299,28 +299,28 @@ function bootEngine() {
 
     // Left hand
     if (["V","F","R","T","G","B","4","5"].includes(char))
-      lnum.src = "./assets/r2.png";
+      lnum.src = "../assets/images/r2.png";
     else if (["E","D","C","3"].includes(char))
-      lnum.src = "./assets/r3.png";
+      lnum.src = "../assets/images/r3.png";
     else if (["W","S","X","2"].includes(char))
-      lnum.src = "./assets/r4.png";
+      lnum.src = "../assets/images/r4.png";
     else if (["Q","A","Z","1","`"].includes(char))
-      lnum.src = "./assets/r5.png";
+      lnum.src = "../assets/images/r5.png";
 
     // Right hand
     if (["N","H","Y","U","J","M","6","7"].includes(char))
-      rnum.src = "./assets/r2.png";
+      rnum.src = "../assets/images/r2.png";
     else if (["I","K","<",",","8"].includes(char))
-      rnum.src = "./assets/r3.png";
+      rnum.src = "../assets/images/r3.png";
     else if (["O","L",">",".","9"].includes(char))
-      rnum.src = "./assets/r4.png";
+      rnum.src = "../assets/images/r4.png";
     else if (["P",";","/","'","[","-","=","]","\\","0"].includes(char))
-      rnum.src = "./assets/r5.png";
+      rnum.src = "../assets/images/r5.png";
 
     // Spacebar
     if (key === " ") {
-      rnum.src = "./assets/r1.png";
-      lnum.src = "./assets/r1.png";
+      rnum.src = "../assets/images/r1.png";
+      lnum.src = "../assets/images/r1.png";
       return;
     }
 
@@ -338,10 +338,10 @@ function bootEngine() {
       const useLeftShift = rightHandSymbols.includes(key);
       if (useLeftShift) {
         if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "#FFD700";
-        lnum.src = "./assets/r5.png";
+        lnum.src = "../assets/images/r5.png";
       } else {
         if (rightShiftKey) rightShiftKey.style.backgroundColor = "#FFD700";
-        rnum.src = "./assets/r5.png";
+        rnum.src = "../assets/images/r5.png";
       }
       return;
     }
@@ -353,10 +353,10 @@ function bootEngine() {
       const useLeftShift = rightHandLetters.includes(char);
       if (useLeftShift) {
         if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "#FFD700";
-        lnum.src = "./assets/r5.png";
+        lnum.src = "../assets/images/r5.png";
       } else {
         if (rightShiftKey) rightShiftKey.style.backgroundColor = "#FFD700";
-        rnum.src = "./assets/r5.png";
+        rnum.src = "../assets/images/r5.png";
       }
     }
   }
@@ -499,8 +499,8 @@ function bootEngine() {
     }
     if (volImg) {
       volImg.src = soundEnabled
-        ? "./assets/volume.png"
-        : "./assets/mute.png";
+        ? "../assets/images/volume.png"
+        : "../assets/images/mute.png";
     }
   };
 
