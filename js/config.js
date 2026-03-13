@@ -1,4 +1,4 @@
-const BASE_PATH = "/assets/";
+const BASE_PATH = "assets/";
 
 const ASSETS = {
     images: BASE_PATH + "images/",
