@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+<script src="js/config.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
@@ -9,8 +10,8 @@
 
   </head>
   <body>
-    <div ><img class="vvlogo" src="./assets/images/vv.png" /></div>
-    <div ><img class="inclogo" src="./assets/images/ie.png" /></div>
+    <div ><img class="vvlogo" src="assets/images/vv.png" /></div>
+    <div ><img class="inclogo" src="assets/images/ie.png" /></div>
 
     <div class="upper">
         <div class="logos">
@@ -47,50 +48,13 @@
             </audio>
             </div>
     </div>
-    <script>
-//     function bgmusic() {
-//     bgm = new Audio("bgm.mp3");
-//     bgm.play();
-// }
-// bgmusic();
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var backgroundMusic = document.getElementById("backgroundMusic");
-  
-  // Check if the audio is playing
-  if (backgroundMusic.paused) {
-    // Attempt to play the audio
-    backgroundMusic.play().catch(function(error) {
-      console.error("Failed to play audio:", error);
-      
-      // Provide a fallback mechanism (e.g., play on user interaction)
-      document.addEventListener("click", function() {
-        backgroundMusic.play().then(function() {
-          console.log("Audio playback started.");
-        }).catch(function(error) {
-          console.error("Failed to play audio:", error);
-        });
-      }, { once: true }); // Only play audio once on user interaction
-    });
-  } else {
-    console.log("Audio playback started.");
-  }
-});
-
-// function simulateDocumentClick() {
-//   var event = new MouseEvent('click', {
-//     bubbles: true,
-//     cancelable: true,
-//     view: window
-//   });
-
-//   document.dispatchEvent(event);
-// }
-
-// simulateDocumentClick();
-
-
-    </script>
+    <script src="../legacy/script1.js"></script>
+  </script>
   </body>
+  <audio id="backgroundMusic" src="assets/images/bgm.mp3" loop></audio>
+
+<script src="../legacy/script1.js"></script>
+<script src="../utils/music.js"></script>
+
+</body>
 </html>
