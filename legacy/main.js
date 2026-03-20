@@ -111,6 +111,7 @@ function bootEngine() {
   const rnum              = document.querySelector(".rh");
   const volButton         = document.querySelector(".volbt");
   const timerElement      = document.getElementById("timer");
+  const timerPausedOverlay = document.getElementById("timerPausedOverlay");
 
   // ── Set restart / next hrefs from levelConfig ────────────
   if (restart) restart.href = levelConfig.restartPage;
@@ -131,6 +132,9 @@ function bootEngine() {
   let soundEnabled  = false;
   let startTime     = null;
   let timerInterval = null;
+  let pausedTime     = 0;
+  let inactivityTimer   = null;
+  let isPaused      = false;
 
   // ── Analytics ────────────────────────────────────────────
   let allTypingResults =
@@ -143,11 +147,37 @@ function bootEngine() {
   // ==========================================================
   //  TIMER  (level10 only)
   // ==========================================================
-  function startTimer() {
+  function pauseTimer() {
+  if (!isPaused && startTime && timerInterval) {
+    isPaused = true;
+    clearInterval(timerInterval);
+    timerInterval = null;
+    pausedTime += Math.floor((new Date() - startTime) / 1000);
+    startTime = null;
+    if (timerPausedOverlay) timerPausedOverlay.style.display="flex";
+  }
+}
+
+function resumeTimer() {
+  if (isPaused) {
+    isPaused = false;
+    startTime = new Date();
+    timerInterval = setInterval(function () {
+      const elapsed = pausedTime + Math.floor((new Date() - startTime) / 1000);
+      const minutes = Math.floor(elapsed / 60).toString().padStart(2, "0");
+      const seconds = (elapsed % 60).toString().padStart(2, "0");
+      if (timerElement) timerElement.textContent = "Time: " + minutes + ":" + seconds;
+    }, 1000);
+    if (timerPausedOverlay) timerPausedOverlay.style.display="none";
+  }
+}
+
+
+function startTimer() {
     if (!startTime && timerElement) {
       startTime = new Date();
       timerInterval = setInterval(function () {
-        const elapsed = Math.floor((new Date() - startTime) / 1000);
+        const elapsed = pausedTime + Math.floor((new Date() - startTime) / 1000);
         const minutes = Math.floor(elapsed / 60).toString().padStart(2, "0");
         const seconds = (elapsed % 60).toString().padStart(2, "0");
         timerElement.textContent = "Time: " + minutes + ":" + seconds;
@@ -158,7 +188,7 @@ function bootEngine() {
   function stopTimer() {
     if (startTime && timerInterval) {
       clearInterval(timerInterval);
-      const totalTime = Math.floor((new Date() - startTime) / 1000);
+      const totalTime = pausedTime + Math.floor((new Date() - startTime) / 1000);
       const minutes   = Math.floor(totalTime / 60).toString().padStart(2, "0");
       const seconds   = (totalTime % 60).toString().padStart(2, "0");
       if (timerElement) {
@@ -215,8 +245,8 @@ function bootEngine() {
     if (userInput.length < correctText.length) {
       updateHands(correctText[userInput.length]);
     } else {
-      if (lnum) lnum.src = "../assets/images/r.png";
-      if (rnum) rnum.src = "../assets/images/r.png";
+      if (lnum) lnum.src = "../assets/images/letters/left_idle.webp";
+      if (rnum) rnum.src = "../assets/images/letters/right_idle.webp";
     }
   }
 
@@ -224,6 +254,8 @@ function bootEngine() {
   //  CONGRATS OVERLAY
   // ==========================================================
   function showCongrats() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = null;
     if (levelConfig.hasTimer) {
       const totalTime = stopTimer();
       const metrics   = calculateMetrics(totalTime);
@@ -283,83 +315,47 @@ function bootEngine() {
   // ==========================================================
   //  UPDATE HANDS
   // ==========================================================
-  function updateHands(key) {
-    if (!lnum || !rnum) return;
+// ==========================================================
+  //  UPDATE HANDS (With Specific Idle Images)
+  // ==========================================================
+function updateHands(key) {
+  if (!lnum || !rnum) return;
 
-    const leftShiftKey  = document.querySelector('[data-key="16"]');
-    const rightShiftKey = document.querySelector('[data-key="16-R"]');
+  const leftShiftKey  = document.querySelector('[data-key="16"]');
+  const rightShiftKey = document.querySelector('[data-key="16-R"]');
 
-    lnum.src = "../assets/images/r.png";
-    rnum.src = "../assets/images/r.png";
-    if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "";
-    if (rightShiftKey) rightShiftKey.style.backgroundColor = "";
+  // 1. Reset BOTH hands to their specific IDLE positions first
+  lnum.src = "../assets/images/letters/left_idle.webp"; 
+  rnum.src = "../assets/images/letters/right_idle.webp"; 
+  
+  if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "";
+  if (rightShiftKey) rightShiftKey.style.backgroundColor = "";
 
-    const char      = key.toUpperCase();
-    const isUppercase = key === key.toUpperCase() && /[A-Z]/.test(key);
+  const char = key.toLowerCase();
 
-    // Left hand
-    if (["V","F","R","T","G","B","4","5"].includes(char))
-      lnum.src = "../assets/images/r2.png";
-    else if (["E","D","C","3"].includes(char))
-      lnum.src = "../assets/images/r3.png";
-    else if (["W","S","X","2"].includes(char))
-      lnum.src = "../assets/images/r4.png";
-    else if (["Q","A","Z","1","`"].includes(char))
-      lnum.src = "../assets/images/r5.png";
+  // 2. Define Hand Finger Maps
+  const leftHandKeys  = ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'];
+  const rightHandKeys = ['y', 'u', 'i', 'o', 'p', 'h', 'j', 'k', 'l', 'n', 'm', ';', "'", ',', '.', '/'];
 
-    // Right hand
-    if (["N","H","Y","U","J","M","6","7"].includes(char))
-      rnum.src = "../assets/images/r2.png";
-    else if (["I","K","<",",","8"].includes(char))
-      rnum.src = "../assets/images/r3.png";
-    else if (["O","L",">",".","9"].includes(char))
-      rnum.src = "../assets/images/r4.png";
-    else if (["P",";","/","'","[","-","=","]","\\","0"].includes(char))
-      rnum.src = "../assets/images/r5.png";
-
-    // Spacebar
-    if (key === " ") {
-      rnum.src = "../assets/images/r1.png";
-      lnum.src = "../assets/images/r1.png";
-      return;
-    }
-
-    // Special shift symbols
-    const shiftChars = {
-      "~":"`","!":"1","@":"2","#":"3","$":"4","%":"5",
-      "^":"6","&":"7","*":"8","(":"9",")":"0",
-      "_":"-","+":"=","{":"[","}":"]","|":"\\",
-      ":":";","\"":"'","<":",",">":".","?":"/"
-    };
-    if (shiftChars[key]) {
-      updateHands(shiftChars[key]);
-      const rightHandSymbols =
-        ["^","&","*","(",")","+","{","}","|",":","\"","<",">","?"];
-      const useLeftShift = rightHandSymbols.includes(key);
-      if (useLeftShift) {
-        if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "#FFD700";
-        lnum.src = "../assets/images/r5.png";
-      } else {
-        if (rightShiftKey) rightShiftKey.style.backgroundColor = "#FFD700";
-        rnum.src = "../assets/images/r5.png";
-      }
-      return;
-    }
-
-    // Capital letters
-    if (isUppercase) {
-      const rightHandLetters =
-        ["Y","U","I","O","P","H","J","K","L","N","M"];
-      const useLeftShift = rightHandLetters.includes(char);
-      if (useLeftShift) {
-        if (leftShiftKey)  leftShiftKey.style.backgroundColor  = "#FFD700";
-        lnum.src = "../assets/images/r5.png";
-      } else {
-        if (rightShiftKey) rightShiftKey.style.backgroundColor = "#FFD700";
-        rnum.src = "../assets/images/r5.png";
-      }
-    }
+  // 3. Logic for Left Hand Keys
+  if (leftHandKeys.includes(char)) {
+    lnum.src = "../assets/images/letters/" + char + ".webp"; 
+    // rnum stays idle because of step 1
+  } 
+  
+  // 4. Logic for Right Hand Keys
+  else if (rightHandKeys.includes(char)) {
+    // Note: If your file is named 'semicolon.webp' instead of ';.webp', use this check:
+    const fileName = (char === ';') ? ';' : char; 
+    rnum.src = "../assets/images/letters/" + fileName + ".webp";
+    // lnum stays idle because of step 1
   }
+
+  // 5. Check for Spacebar
+  else if (key === " ") {
+    rnum.src = "../assets/images/letters/space.webp";
+  }
+}
 
   // ==========================================================
   //  SAVE RESULTS TO FILE
@@ -388,6 +384,18 @@ function bootEngine() {
   // ==========================================================
   document.addEventListener("keydown", function (event) {
     let typedChar = event.key;
+    // Resume timer if paused
+    if (levelConfig.hasTimer && isPaused) {
+      resumeTimer();
+    }
+
+    // Reset inactivity countdown
+    if (levelConfig.hasTimer && startTime) {
+      clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(function () {
+        pauseTimer();
+      }, 5000);
+    }
 
     // level9: swap single ↔ double quote
     if (levelConfig.quoteSwap) {
@@ -447,6 +455,7 @@ function bootEngine() {
             if (currentStage < stages.length) {
               userInput = "";
               hideCongrats();
+              if (timerPausedOverlay) timerPausedOverlay.classList.add("hidden");
               updateDisplay();
               speak(stages[currentStage][0]);
             } else {
@@ -462,13 +471,14 @@ function bootEngine() {
           }, 1000);
         }
 
-      } else {
+} else {
         // Wrong key
         errorSound.currentTime = 0;
         errorSound.play();
         messageElement.textContent =
           'Wrong key. Expected "' + expectedChar + '", typed "' + typedChar + '". Try again.';
 
+        // Flash the keyboard key red
         const keyEl = document.querySelector(
           '[data-char*="' + typedChar.toUpperCase() + '"]'
         );
@@ -479,6 +489,20 @@ function bootEngine() {
             keyEl.style.backgroundColor = "";
             keyEl.style.transform        = "scale(1)";
           }, 300);
+        }
+
+        // Blink the current letterBox red (level1-5 only)
+        if (levelConfig.useLetterBoxes) {
+          const boxes = keysToTypeElement.querySelectorAll(".letterBox");
+          const currentBox = boxes[userInput.length];
+          if (currentBox) {
+            currentBox.style.backgroundColor = "#ffcdd2";
+            currentBox.style.borderColor     = "#e53935";
+            setTimeout(function () {
+              currentBox.style.backgroundColor = "";
+              currentBox.style.borderColor     = "";
+            }, 300);
+          }
         }
         allTypingResults[currentLevel][currentStage].push(
           [expectedChar, 0, typedChar]
