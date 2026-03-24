@@ -11,12 +11,11 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
+
+<div class="main-wrapper">
     <!-- ================= BACKGROUND ================= -->
 <div class="sky-gradient"></div>
 
-<!-- ================= CLOUDS ================= -->
-
-<!-- REPLACE WITH YOUR CLOUD PNG -->
 <!-- ================= CLOUDS ================= -->
 
 <img class="cloud cloud1" src="assets/images/clouds1.png">
@@ -40,7 +39,8 @@
 
 </header>
 
-<!-- ================= MAIN GAME CARD ================= -->
+<!-- ✅ NEW CENTER WRAPPER (FIX) -->
+<div class="center-area">
 
 <!-- ================= MAIN GAME CARD ================= -->
 <section class="game-card">
@@ -71,13 +71,15 @@
   <p class="subtitle">Learn typing with fun!</p>
 
   <!-- Start Game button -->
-  <button class="start-btn" onclick="openLevels()">
+  <button class="start-btn" onclick="openHome()">
     <span class="spark-l">✦</span>
     Start Game
     <span class="spark-r">✦</span>
   </button>
 
 </section>
+
+</div> <!-- ✅ END CENTER WRAPPER -->
 
 <!-- FLOATING ELEMENTS -->
 <div class="floating-elements">
@@ -91,13 +93,22 @@
 <!-- ================= MASCOTS ================= -->
 
 <!-- GIRL CHARACTER -->
-<img id="mascot-right" class="mascot mascot-right"
-src="assets/images/shanti.png">
+<div class="mascot-wrap mascot-right-wrap">
+  <div class="speech">Hi! I'm Shanti 👋</div>
+  <img id="mascot-right" class="mascot mascot-right"
+  src="assets/images/shanti/shanti.png"
+  data-idle="assets/images/shanti/shanti.png"
+  data-wave="assets/images/shanti/shanti-wave.png">
+</div>
 
 <!-- BOY CHARACTER -->
-<img id="mascot-left" class="mascot mascot-left"
-src="assets/images/prem.png">
-
+<div class="mascot-wrap mascot-left-wrap">
+  <div class="speech">Hi! I'm Prem 👋</div>
+  <img id="mascot-left" class="mascot mascot-left"
+  src="assets/images/prem/prem.png"
+  data-idle="assets/images/prem/prem.png"
+  data-wave="assets/images/prem/prem-wave.png">
+</div>
 
 <!-- ================= KEYBOARD ================= -->
 <div class="keyboard-area">
@@ -112,12 +123,20 @@ src="assets/images/prem.png">
 <img class="hand hand-right" src="assets/images/righthand.png">
 
 </div>
+</div> <!-- End of main wrapper --> 
 
-</body>
-<audio id="backgroundMusic" src=assets/audio/bgm.mp3" loop></audio>
+<audio id="backgroundMusic" src="assets/audio/bgm.mp3" loop></audio>
 
 <script src="legacy/indexscript.js"></script>
 <script src="utils/music.js"></script>
+
+<div id="rotate-screen">
+  <div class="rotate-content">
+    <div class="phone-icon">📱</div>
+    <p>Please rotate your device</p>
+    <span>Use landscape mode for best experience</span>
+  </div>
+</div>
 
 </body>
 </html>

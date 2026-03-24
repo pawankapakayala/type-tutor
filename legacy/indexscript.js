@@ -1,55 +1,55 @@
-// ================= START GAME BUTTON =================
+// ============================================================
+//  indexscript.js  —  Typing Tutor Landing Page
+// ============================================================
 
-function startGame(){
-
-alert("Game will start!");
-
-// later you can redirect to game page
-// window.location.href = "game.html";
-
+// ── START GAME ───────────────────────────────────────────────
+function openHome() {
+  const btn = document.querySelector(".start-btn");
+  if (btn) {
+    btn.innerHTML = "Loading...";
+    btn.disabled = true;
+  }
+  document.body.classList.add("fade-out");
+  setTimeout(() => {
+    window.location.href = "home.html";
+  }, 900);
 }
 
+// ── ROTATE SCREEN ────────────────────────────────────────────
+// Show the rotate prompt only on portrait mobile/tablet
+// CSS media query already handles most of this, but JS gives
+// us live orientation-change detection.
+const rotateScreen = document.getElementById("rotate-screen");
 
-// ================= LEVEL SELECT =================
+function checkOrientation() {
+  if (!rotateScreen) return;
+  const isPortrait = window.innerHeight > window.innerWidth;
+  const isMobile   = window.innerWidth <= 768;
 
-function selectLevel(){
-
-alert("Open level selection!");
-
-// later connect with your existing level system
-
+  if (isPortrait && isMobile) {
+    rotateScreen.style.display = "flex";
+  } else {
+    rotateScreen.style.display = "none";
+  }
 }
 
+// Run on load + on every resize / orientation change
+checkOrientation();
+window.addEventListener("resize",            checkOrientation);
+window.addEventListener("orientationchange", () => {
+  // Small delay lets the browser finish rotating
+  setTimeout(checkOrientation, 120);
+});
 
-
-// ================= OPTIONAL PARTICLE SPARKLES =================
-
-const sparkleCount = 30;
-
-for(let i=0;i<sparkleCount;i++){
-
-const star = document.createElement("div");
-
-star.className = "sparkle";
-
-star.style.left = Math.random()*100+"vw";
-star.style.top = Math.random()*100+"vh";
-
-document.body.appendChild(star);
-
-}
-
-
-// ================= KEYBOARD HAND INTERACTION =================
-
+// ── KEYBOARD / HAND HOVER INTERACTION ────────────────────────
 const keyboard  = document.querySelector(".keyboard-area");
 const leftHand  = document.querySelector(".hand-left");
 const rightHand = document.querySelector(".hand-right");
 
 if (keyboard && leftHand && rightHand) {
   keyboard.addEventListener("mouseenter", () => {
-    leftHand.style.transform  = "translateY(-16px)";
-    rightHand.style.transform = "translateY(-16px)";
+    leftHand.style.transform  = "translateY(-18px)";
+    rightHand.style.transform = "translateY(-18px)";
   });
   keyboard.addEventListener("mouseleave", () => {
     leftHand.style.transform  = "";
@@ -57,65 +57,23 @@ if (keyboard && leftHand && rightHand) {
   });
 }
 
+// ── MASCOT HOVER INTERACTION ──────────────────────────────────
+function setupMascot(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
 
-// ================= MASCOT INTERACTION =================
+  const idle = el.getAttribute("data-idle");
+  const wave = el.getAttribute("data-wave");
 
-const leftMascot  = document.getElementById("mascot-left");
-const rightMascot = document.getElementById("mascot-right");
-
-if (leftMascot && rightMascot) {
-
-  // 🟡 WAVE ON LOAD
-  window.addEventListener("load", () => {
-    leftMascot.classList.add("wave");
-    rightMascot.classList.add("wave");
-
-    setTimeout(() => {
-      leftMascot.classList.remove("wave");
-      rightMascot.classList.remove("wave");
-    }, 2000);
+  el.addEventListener("mouseenter", () => {
+    if (wave) el.src = wave;
+    el.classList.add("wave");
   });
-
-  // 🟢 CLICK → BOUNCE
-  [leftMascot, rightMascot].forEach(mascot => {
-    mascot.addEventListener("click", () => {
-      mascot.classList.add("bounce");
-
-      setTimeout(() => {
-        mascot.classList.remove("bounce");
-      }, 400);
-    });
+  el.addEventListener("mouseleave", () => {
+    if (idle) el.src = idle;
+    el.classList.remove("wave");
   });
-
-
-  // 🔵 HOVER ON START BUTTON → LOOK AT BUTTON
-  const button = document.querySelector(".start-btn");
-
-  if(button){
-    button.addEventListener("mouseenter", () => {
-      leftMascot.style.transform = "rotate(-2deg)";
-      rightMascot.style.transform = "rotate(2deg)";
-    });
-
-    button.addEventListener("mouseleave", () => {
-      leftMascot.style.transform = "";
-      rightMascot.style.transform = "";
-    });
-  }
-
-
-  // 🟣 IDLE PERSONALITY (SUBTLE RANDOM MOVEMENT)
-  setInterval(() => {
-    const random = Math.random();
-
-    if(random < 0.5){
-      leftMascot.style.transform = "rotate(-2deg)";
-      rightMascot.style.transform = "rotate(2deg)";
-    } else {
-      leftMascot.style.transform = "";
-      rightMascot.style.transform = "";
-    }
-
-  }, 4000);
-
 }
+
+setupMascot("mascot-left");
+setupMascot("mascot-right");
