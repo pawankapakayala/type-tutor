@@ -1,33 +1,22 @@
 /*@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 */
 * {
+  /* border: 1px solid red; */
   margin: 0px;
   padding: 0px;
-  box-sizing: border-box;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-image: url(../assets/images/home.png);
+  height: 100vh;
   background-attachment: fixed;
+  padding: 0px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
-  background-color: #e8f4f8;
   
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  background-size: 100vw 100vh;
+
+  /* overflow: hidden; */
 }
 
 /*@keyframes gradient {
@@ -46,67 +35,53 @@ body {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  max-width: 100vw;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .vvlogo {
   position: absolute;
-  right: clamp(8px, 3vw, 40px);
-  width: clamp(50px, 10vw, 140px);
-  height: auto;
-  max-width: 100%;
+  right: 3vh;
+  width: 10vw;
 }
 
 .title {
-  width: clamp(100px, 50%, 500px);
-  text-align: center;
-  flex-shrink: 0;
+  width: 50%;
+  /* border: 5px solid blue; */
 }
 
 .inclogo {
   position: absolute;
-  left: clamp(8px, 3vw, 40px);
-  width: clamp(50px, 10vw, 140px);
-  height: auto;
-  max-width: 100%;
+  left: 3vh;
+  width: 10vw;
 }
-
 .mascot {
-  height: clamp(150px, 70vh, 500px);
-  margin-top: clamp(20px, 3vh, 60px);
+  height: 80vh;
+  margin-top: 50px;
   position: absolute;
-  width: auto;
-  max-width: 100%;
+  /* border:1px solid red; */
 }
 .btn {
-  padding: clamp(10px, 1.5vh, 18px);
+  padding: 15px;
   font-weight: 700;
-  font-size: clamp(0.9rem, 2.2vh, 1.2rem);
+  font-size: 2vh;
   text-decoration: none;
   text-align: center;
   transition: all 0.5s ease;
-  display: inline-block;
-  white-space: nowrap;
 }
 
 .btn--action {
-  display: inline-block;
-  max-width: min(60vw, 450px);
-  width: auto;
-  min-width: 160px;
-  padding: clamp(10px, 1.4vh, 14px) clamp(20px, 3.5vw, 38px);
-  border-radius: clamp(22px, 3.2vh, 32px);
+  display: block;
+  max-width: 50vh;
+  width: 50vw;
+  padding:.9vh;
+  border-radius:3vh;
   background-color: #c8ffae;
   color: #000;
   transition: all 0.5s ease 0s;
-  box-shadow: 0 clamp(7px, 1.2vh, 16px) #689357;
+  box-shadow: 0 10px #689357;
+  /*margin-bottom: 30px;*/
   text-align: center;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
 }
 
 
@@ -115,139 +90,67 @@ body {
 
 .btn--action span {
   display: inline-block;
+  /* position: relative; */
   transition: all 0.5s ease;
-  margin: 0 clamp(4px, 0.5vw, 8px);
 }
 
 .btn--action span:before {
   content: "\f04b";
   color: #000;
-  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  font-size: 1rem;
   font-family: "Font Awesome 5 Free";
   display: inline-block;
+  /* position: absolute; */
+  /* top: 10px; */
+  /* left: 1.5rem; */
   opacity: 0;
-  transition: all 0.2s ease;
-  margin-right: 0;
+  transition: all 0.1s ease 0s;
 }
 
 .btn--action:hover span {
-  padding-left: clamp(8px, 1.2vw, 16px);
+  padding-left: 1.5rem;
 }
 
 .btn--action:hover span:before {
+  left: 0;
   opacity: 1;
-  margin-right: clamp(4px, 0.8vw, 8px);
 }
 
 .btn--action:active {
-  box-shadow: 0 clamp(3px, 0.6vh, 6px) #f0932b;
-  transform: translateY(clamp(2px, 0.4vh, 4px));
+  box-shadow: 0 5px #f0932b;
+  transform: translateY(5px);
 }
 
 
 .levels-container{
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 100vw;
-  padding: clamp(12px, 2vw, 30px);
-  flex-wrap: wrap;
-  overflow-x: hidden;
+  padding: 2vw;
 }
-
 .levels {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(20px, 4vh, 40px);
-  margin-top: clamp(20px, 5vh, 50px);
-  padding: clamp(16px, 2vw, 36px);
-  width: 100%;
-  max-width: min(600px, 95vw);
+  gap: 3vh;
+  margin-top: 8vh;
+  padding: 20px;
+  width: 100vh;
+  max-width: 400px;
   box-sizing: border-box;
 }
 
 .vv {
   font-family: "Playfair Display", serif;
   font-style: italic;
-  font-size: clamp(1.2rem, 3vh, 1.8rem);
+  font-size: 3vh;
 }
-
 .inc{
-  font-size: clamp(1.2rem, 3vh, 1.8rem);
+  font-size: 3vh;
 }
 
 .logos {
   text-align: center;
   color: rgb(49, 49, 49);
-  margin-top: clamp(12px, 2vh, 24px);
-  font-size: clamp(0.9rem, 1.8vh, 1.1rem);
-}
-
-/* ============================================================
-   RESPONSIVE MEDIA QUERIES
-   ============================================================ */
-
-/* Mobile Portrait */
-@media (max-width: 600px) and (orientation: portrait) {
-  html, body { font-size: 14px; }
-  
-  .title { width: clamp(80px, 60vw, 300px); }
-  
-  .inclogo, .vvlogo { 
-    width: clamp(40px, 8vw, 80px); 
-  }
-  
-  .mascot { 
-    height: clamp(100px, 60vh, 300px);
-    margin-top: clamp(10px, 2vh, 30px);
-  }
-  
-  .btn--action {
-    padding: clamp(6px, 1vh, 10px) clamp(12px, 2.5vw, 24px);
-  }
-  
-  .levels {
-    gap: clamp(12px, 2vh, 24px);
-    margin-top: clamp(12px, 3vh, 28px);
-    padding: clamp(10px, 1.2vw, 20px);
-  }
-}
-
-/* Large Mobile / Tablet */
-@media (max-width: 768px) and (min-width: 601px) {
-  html, body { font-size: 15px; }
-  
-  .btn--action {
-    padding: clamp(7px, 1.2vh, 11px) clamp(14px, 3vw, 28px);
-  }
-}
-
-/* Small Landscape */
-@media (max-width: 768px) and (orientation: landscape) and (min-height: 400px) {
-  html, body { font-size: 13px; }
-  
-  .mascot { 
-    height: clamp(80px, 60vh, 250px);
-    position: static;
-    margin: clamp(8px, 1vh, 20px) auto;
-  }
-  
-  .levels {
-    margin-top: clamp(10px, 2vh, 20px);
-    gap: clamp(12px, 2vh, 20px);
-  }
-}
-
-/* Tablet and up */
-@media (min-width: 769px) {
-  .inclogo, .vvlogo {
-    width: clamp(60px, 12vw, 150px);
-  }
-  
-  .mascot {
-    height: clamp(200px, 70vh, 600px);
-  }
+  margin-top: 3vh;
 }
 
