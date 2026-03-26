@@ -416,6 +416,7 @@ function bootEngine() {
         allTypingResults[currentLevel][currentStage].pop();
       }
       updateDisplay();
+      window._checkAndStartNextBlink();
       return;
     }
 
@@ -433,6 +434,7 @@ function bootEngine() {
 
       if (isCorrect) {
         userInput += expectedChar;
+        window._handlePulseKeyPress(expectedChar); // advance intro blink queue
         keySound.currentTime = 0;
         keySound.play();
         speak(expectedChar);
@@ -560,6 +562,71 @@ function bootEngine() {
   // ==========================================================
   hideCongrats();
   updateDisplay();
+
+  // ── NEW-KEY INTRO BLINK ──────────────────────────────────
+  // introKeys: ['f','j',';','1','!']  in scriptN.js  →  feature on
+  // Blinks the next pending key the moment its turn arrives.
+  // Stops blinking when user presses it. Never blinks it again.
+
+  const pending = (levelConfig.introKeys || []).slice();
+  let blinkEl = null;
+
+  const blinkStyle = document.createElement("style");
+  blinkStyle.textContent = `
+    @keyframes keyblink {
+      0%,100% { background-color:#FFAA00 !important;
+                transform:scale(1.25);
+                box-shadow:0 0 14px 5px rgba(255,170,0,0.75); }
+      50%     { background-color:inherit !important;
+                transform:scale(1.0);
+                box-shadow:none; }
+    }
+    .key-blink { animation: keyblink 650ms ease-in-out infinite !important; }
+  `;
+  document.head.appendChild(blinkStyle);
+
+  function findKeyEl(ch) {
+    if (/[a-zA-Z]/.test(ch))
+      return document.querySelector('[data-char*="' + ch.toUpperCase() + '"]');
+    for (const el of document.querySelectorAll('[data-char]'))
+      if (el.getAttribute('data-char').includes(ch)) return el;
+    return null;
+  }
+
+  function matches(a, b) {
+    return /[a-zA-Z]/.test(b) ? a.toLowerCase() === b.toLowerCase() : a === b;
+  }
+
+  function checkBlink() {
+    if (!pending.length) return;
+    const next = stages[currentStage][userInput.length];
+    if (next && matches(next, pending[0])) {
+      if (!blinkEl) {
+        blinkEl = findKeyEl(pending[0]);
+        if (blinkEl) blinkEl.classList.add("key-blink");
+      }
+    } else {
+      if (blinkEl) { blinkEl.classList.remove("key-blink"); blinkEl = null; }
+    }
+  }
+
+  window._handlePulseKeyPress = function (ch) {
+    if (blinkEl && matches(ch, pending[0])) {
+      blinkEl.classList.remove("key-blink");
+      blinkEl = null;
+      pending.shift();
+    }
+    checkBlink();
+  };
+
+  window._startStagePulse        = checkBlink;
+  window._checkAndStartNextBlink = checkBlink;
+
+  checkBlink();
+
+
+
+
 
 } // end bootEngine()
 
