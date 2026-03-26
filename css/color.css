@@ -3,8 +3,12 @@
   margin: 0px;
   padding: 0px;
   font-family: "ABeeZee", sans-serif;
-  
+  /* border: 1px solid red; */
 }
+/*.home_button{
+  margin: 0%;
+  bottom: 5%;
+}*/
 
 .bg {
   width: 100%;
@@ -56,10 +60,10 @@
   padding: -10px;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-flow: row wrap;
   position: absolute;
-  top: 15%;
+  top: 25%;
 
   /* border: 1px solid red; */
 }
@@ -358,12 +362,13 @@ h1 {
 }
 
 #keysToType {
-  border: none;
+  border: 1px solid #333;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 12vh;
-  width: 100vw;
+  border-radius:2vh;
+  width: 60vw;
   font-size: 2vw;
   color: rgb(7, 1, 1);
   text-align: center;
@@ -399,29 +404,16 @@ h1 {
 }
 
 .lefthand {
-  width: 35vw;
-  position: absolute;
-  height: auto;
-  z-index: 100;
-  pointer-events: none;
+  width: 8vw;
+  position: relative;
 }
 
 .righthand {
   width: 35vw;
 }
 
-.lh {
-  left: 14vw;
-  bottom: -32vh;
-}
-
-.rh {
-  right: 20vw;
-  bottom: -26vh;
-}
-
 .flip {
-  transform: scaleX(1);
+  transform: scaleX(-1);
 }
 
 .blur {
@@ -646,8 +638,8 @@ h1 {
 }
 
 .letterBox{
-  width:35px;
-  height:35px;
+  width:42px;
+  height:42px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -668,38 +660,4 @@ h1 {
   background:#ffcdd2;
   border-color:#e53935;
   color:#c62828;
-}
-
-/* ===== Timer Paused Overlay ===== */
-.timer-paused-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 500;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
-.timer-paused-box {
-  background-color: white;
-  border-radius: 16px;
-  padding: 30px 50px;
-  text-align: center;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.timer-paused-box p {
-  font-size: 3vh;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.timer-paused-box span {
-  font-size: 2vh;
-  color: #777;
 }
