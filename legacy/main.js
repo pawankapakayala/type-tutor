@@ -324,7 +324,6 @@ function updateHands(key) {
   const leftShiftKey  = document.querySelector('[data-key="16"]');
   const rightShiftKey = document.querySelector('[data-key="16-R"]');
 
-  // 1. Reset BOTH hands to their specific IDLE positions first
   lnum.src = "../assets/images/letters/left_idle.webp"; 
   rnum.src = "../assets/images/letters/right_idle.webp"; 
   
@@ -333,27 +332,32 @@ function updateHands(key) {
 
   const char = key.toLowerCase();
 
-  // 2. Define Hand Finger Maps
-  const leftHandKeys  = ['q', 'w', 'e', 'r', 't', 'a', 's', 'd', 'f', 'g', 'z', 'x', 'c', 'v', 'b'];
-  const rightHandKeys = ['y', 'u', 'i', 'o', 'p', 'h', 'j', 'k', 'l', 'n', 'm', ';', "'", ',', '.', '/'];
+  // ── NEW: detect uppercase ──────────────────────────────
+  const isUpperCase = key !== " " && key === key.toUpperCase() && key.length === 1 && /[A-Z]/.test(key);
 
-  // 3. Logic for Left Hand Keys
+  const leftHandKeys  = ['q','w','e','r','t','a','s','d','f','g','z','x','c','v','b'];
+  const rightHandKeys = ['y','u','i','o','p','h','j','k','l','n','m',';',"'",',','.','/' ];
+
   if (leftHandKeys.includes(char)) {
-    lnum.src = "../assets/images/letters/" + char + ".webp"; 
-    // rnum stays idle because of step 1
+    lnum.src = "../assets/images/letters/"+char+".webp"; 
   } 
-  
-  // 4. Logic for Right Hand Keys
   else if (rightHandKeys.includes(char)) {
-    // Note: If your file is named 'semicolon.webp' instead of ';.webp', use this check:
     const fileName = (char === ';') ? ';' : char; 
-    rnum.src = "../assets/images/letters/" + fileName + ".webp";
-    // lnum stays idle because of step 1
+    rnum.src = "../assets/images/letters/"+fileName+".webp";
   }
-
-  // 5. Check for Spacebar
   else if (key === " ") {
     rnum.src = "../assets/images/letters/space.webp";
+  }
+
+  // ── NEW: show shift hand if uppercase ──────────────────
+  if (isUpperCase) {
+    if (leftHandKeys.includes(char)) {
+      // left hand types the letter → right hand holds Shift
+      rnum.src = "../assets/images/letters/right_shift.webp";
+    } else if (rightHandKeys.includes(char)) {
+      // right hand types the letter → left hand holds Shift
+      lnum.src = "../assets/images/letters/left_shift.webp";
+    }
   }
 }
 
@@ -424,6 +428,7 @@ function updateHands(key) {
         allTypingResults[currentLevel][currentStage].pop();
       }
       updateDisplay();
+      window._checkAndStartNextBlink();
       return;
     }
 
@@ -441,6 +446,7 @@ function updateHands(key) {
 
       if (isCorrect) {
         userInput += expectedChar;
+        window._handlePulseKeyPress(expectedChar); // advance intro blink queue
         keySound.currentTime = 0;
         keySound.play();
         speak(expectedChar);
@@ -449,27 +455,46 @@ function updateHands(key) {
         updateDisplay();
 
         // Stage complete?
-        if (userInput === stages[currentStage]) {
-          setTimeout(function () {
-            currentStage++;
-            if (currentStage < stages.length) {
-              userInput = "";
-              hideCongrats();
-              if (timerPausedOverlay) timerPausedOverlay.classList.add("hidden");
-              updateDisplay();
-              speak(stages[currentStage][0]);
-            } else {
-              messageElement.textContent =
-                "Congratulations! You've completed all stages.";
-              keysToTypeElement.innerHTML = "";
-              showCongrats();
-              localStorage.setItem(
-                "allTypingResults",
-                JSON.stringify(allTypingResults)
-              );
-            }
-          }, 1000);
-        }
+if (userInput === stages[currentStage]) {
+
+  // Step 1 — slide current row out to the left immediately
+  keysToTypeElement.classList.add("slide-out-left");
+
+  // Step 2 — after slide-out finishes (300ms), load next stage
+  setTimeout(function () {
+
+    currentStage++;
+
+    if (currentStage < stages.length) {
+      userInput = "";
+      hideCongrats();
+      if (timerPausedOverlay) timerPausedOverlay.style.display = "none";
+
+      // Step 3 — remove slide-out, build new content
+      keysToTypeElement.classList.remove("slide-out-left");
+      updateDisplay();
+      window._startStagePulse();               // re-check blinks for new stage
+
+      // Step 4 — slide new row in from the right
+      keysToTypeElement.classList.add("slide-in-right");
+
+      // Step 5 — clean up class after animation finishes
+      setTimeout(function () {
+        keysToTypeElement.classList.remove("slide-in-right");
+      }, 300);
+
+      speak(stages[currentStage][0]);
+
+    } else {
+      keysToTypeElement.classList.remove("slide-out-left");
+      messageElement.textContent = "Congratulations! You've completed all stages.";
+      keysToTypeElement.innerHTML = "";
+      showCongrats();
+      localStorage.setItem("allTypingResults", JSON.stringify(allTypingResults));
+    }
+
+  }, 200); // matches the slide-out duration
+}
 
 } else {
         // Wrong key
@@ -584,6 +609,71 @@ function updateHands(key) {
   // ==========================================================
   hideCongrats();
   updateDisplay();
+
+  // ── NEW-KEY INTRO BLINK ──────────────────────────────────
+  // introKeys: ['f','j',';','1','!']  in scriptN.js  →  feature on
+  // Blinks the next pending key the moment its turn arrives.
+  // Stops blinking when user presses it. Never blinks it again.
+
+  const pending = (levelConfig.introKeys || []).slice();
+  let blinkEl = null;
+
+  const blinkStyle = document.createElement("style");
+  blinkStyle.textContent = `
+    @keyframes keyblink {
+      0%,100% { background-color:#FFAA00 !important;
+                transform:scale(1.25);
+                box-shadow:0 0 14px 5px rgba(255,170,0,0.75); }
+      50%     { background-color:inherit !important;
+                transform:scale(1.0);
+                box-shadow:none; }
+    }
+    .key-blink { animation: keyblink 650ms ease-in-out infinite !important; }
+  `;
+  document.head.appendChild(blinkStyle);
+
+  function findKeyEl(ch) {
+    if (/[a-zA-Z]/.test(ch))
+      return document.querySelector('[data-char*="' + ch.toUpperCase() + '"]');
+    for (const el of document.querySelectorAll('[data-char]'))
+      if (el.getAttribute('data-char').includes(ch)) return el;
+    return null;
+  }
+
+  function matches(a, b) {
+    return /[a-zA-Z]/.test(b) ? a.toLowerCase() === b.toLowerCase() : a === b;
+  }
+
+  function checkBlink() {
+    if (!pending.length) return;
+    const next = stages[currentStage][userInput.length];
+    if (next && matches(next, pending[0])) {
+      if (!blinkEl) {
+        blinkEl = findKeyEl(pending[0]);
+        if (blinkEl) blinkEl.classList.add("key-blink");
+      }
+    } else {
+      if (blinkEl) { blinkEl.classList.remove("key-blink"); blinkEl = null; }
+    }
+  }
+
+  window._handlePulseKeyPress = function (ch) {
+    if (blinkEl && matches(ch, pending[0])) {
+      blinkEl.classList.remove("key-blink");
+      blinkEl = null;
+      pending.shift();
+    }
+    checkBlink();
+  };
+
+  window._startStagePulse        = checkBlink;
+  window._checkAndStartNextBlink = checkBlink;
+
+  checkBlink();
+
+
+
+
 
 } // end bootEngine()
 

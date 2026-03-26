@@ -191,7 +191,7 @@ h1 {
   box-shadow: 0 0 0 0.05em black;
 }
 .key--w{
-  width:5emem;
+  width:5em;
 }
 .key--w3 {
   width: 4.6em; 
@@ -368,9 +368,7 @@ h1 {
   color: rgb(7, 1, 1);
   text-align: center;
 }
-#keysToTypeSpan{
-  font-size: 2.5vh;
-}
+
 @media (max-width: 768px) {
   .keyboard {
       flex-direction: column;
@@ -541,13 +539,13 @@ h1 {
 }
 
 .home-link:hover {
-  background-color: lab(94.02% -0.33 0.1);
+  background-color: #f0f0f0;
   transform: scale(1.05);
 }
 
 .home-link img {
   filter: none;
-  opacity: 2ss;
+  opacity: 1;
 }
 
 .home-text {
@@ -643,6 +641,7 @@ h1 {
   gap:8px;
   max-width:900px;
   margin:auto;
+  font-size: 2vh;
 }
 
 .letterBox{
@@ -702,4 +701,24 @@ h1 {
 .timer-paused-box span {
   font-size: 2vh;
   color: #777;
+}
+
+/* Slide out to the left */
+@keyframes slideOutLeft {
+  from { transform: translateX(0);     opacity: 1; }
+  to   { transform: translateX(-100%); opacity: 0; }
+}
+
+/* Slide in from the right */
+@keyframes slideInRight {
+  from { transform: translateX(100%);  opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+.slide-out-left {
+  animation: slideOutLeft 300ms ease forwards;
+}
+
+.slide-in-right {
+  animation: slideInRight 300ms ease forwards;
 }
