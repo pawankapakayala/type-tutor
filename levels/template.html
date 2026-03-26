@@ -187,33 +187,21 @@
             <div data-key="39" class="key--arrow"><span>&#9654;</span></div>
           </div>
 
-            <div>
-    <img class="lefthand flip lh" src="../assets/images/letters/left_idle.webp" />
-  </div>
-    <div>
-    <img class="lefthand rh" src="../assets/images/letters/right_idle.webp" />
-  </div>
         </div><!-- end .keyboard -->
       </div><!-- end .mid -->
 
       <!-- ── Lower: hands + text display ───────────────────── -->
-   <div class="lower">
+      <div class="lower">
+        <div><img class="lefthand flip lh" src="../assets/images/r.png" /></div>
+        <div class="lowmid">
+          <p id="message">Press the correct keys!</p>
+            <span id="keysToTypeSpan">F</span>
+          <!-- Timer shown only for level10 (hidden by default) -->
+          <div id="timer" style="display:none;">Timer : 00:00</div>
+        </div>
+        <div><img class="lefthand rh" src="../assets/images/r.png" /></div>
+      </div>
 
-
-  <div class="lowmid">
-    <p id="message">Press the correct keys!</p>
-
-    <!-- ✅ Added wrapper for better positioning -->
-    <p id="keysToType">
-      <span id="keysToTypeSpan">F</span>
-    </p>
-
-    <!-- Timer shown only for level10 (hidden by default) -->
-    <div id="timer" style="display:none;">Timer : 00:00</div>
-  </div>
-
- 
-</div>
       <!-- ── Volume button ──────────────────────────────────── -->
       <div class="volume">
         <button class="volbt" onclick="toggleSound()" tabindex="-1">
@@ -231,14 +219,6 @@
       <div class="hidden congo">Congratulations!!🥳</div>
       <a href="#" class="hidden but restart"><span>Restart</span></a>
       <a href="#" class="hidden but next"><span>Next</span></a>
-    </div>
-
-    <!-- ── Timer Paused overlay ───────────────────────────── -->
-    <div id="timerPausedOverlay" class="timer-paused-overlay">
-      <div class="timer-paused-box">
-        <p>⏸ Timer Paused</p>
-        <span>Press any key to resume</span>
-      </div>
     </div>
 
     <!-- ── Switch Theme button ────────────────────────────── -->
