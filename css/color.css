@@ -195,7 +195,7 @@ h1 {
   box-shadow: 0 0 0 0.05em black;
 }
 .key--w{
-  width:5em;
+  width:5emem;
 }
 .key--w3 {
   width: 4.6em; 
@@ -373,7 +373,9 @@ h1 {
   color: rgb(7, 1, 1);
   text-align: center;
 }
-
+#keysToTypeSpan{
+  font-size: 2.5vh;
+}
 @media (max-width: 768px) {
   .keyboard {
       flex-direction: column;
@@ -531,13 +533,13 @@ h1 {
 }
 
 .home-link:hover {
-  background-color: #f0f0f0;
+  background-color: lab(94.02% -0.33 0.1);
   transform: scale(1.05);
 }
 
 .home-link img {
   filter: none;
-  opacity: 1;
+  opacity: 2ss;
 }
 
 .home-text {
@@ -633,7 +635,6 @@ h1 {
   gap:8px;
   max-width:900px;
   margin:auto;
-  font-size: 2vh;
 }
 
 .letterBox{
