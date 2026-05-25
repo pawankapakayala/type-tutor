@@ -1,0 +1,522 @@
+/* ============================================
+   FANTASY TYPER PATH SELECTION DASHBOARD CSS
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(../assets/home.png);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100vw 100vh;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  font-family: "ABeeZee", sans-serif;
+}
+
+/* ============================================
+   HEADER STYLING (Reused from main.css/home.css)
+   ============================================ */
+
+.upper {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.logos {
+  text-align: center;
+  color: rgb(49, 49, 49);
+  margin-top: 3vh;
+}
+
+.vv {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: 3vh;
+  margin: 0;
+}
+
+.inc {
+  font-size: 3vh;
+  margin: 0;
+  margin-top: -1vh;
+}
+
+.vvlogo-container {
+  position: absolute;
+  right: 3vh;
+  top: 2vh;
+  z-index: 20;
+}
+
+.inclogo-container {
+  position: absolute;
+  left: 3vh;
+  top: 2vh;
+  z-index: 20;
+}
+
+.vvlogo,
+.inclogo {
+  width: 10vw;
+  max-width: 120px;
+  height: auto;
+}
+
+/* ============================================
+   MAIN SCENE CONTAINER
+   ============================================ */
+
+.scene-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ============================================
+   CHARACTERS SECTION
+   ============================================ */
+
+.characters-section {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2vh;
+  z-index: 15;
+  max-width: 90vw;
+}
+
+.character {
+  height: 35vh;
+  width: auto;
+  max-width: 45%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+  animation: float-idle 4s ease-in-out infinite;
+}
+
+.prem-character {
+  animation-delay: 0s;
+}
+
+.shanti-character {
+  animation-delay: 1s;
+}
+
+@keyframes float-idle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ============================================
+   PATH SELECTION UI
+   ============================================ */
+
+.paths-wrapper {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8vw;
+  justify-content: center;
+  align-items: center;
+  z-index: 12;
+  width: 90%;
+  max-width: 900px;
+}
+
+.path-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vh;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.path-option:hover {
+  transform: scale(1.05);
+}
+
+.path-option:hover .path-signboard {
+  background: rgba(200, 255, 174, 0.95);
+  box-shadow: 0 0 30px rgba(200, 255, 174, 0.6),
+              inset 0 0 20px rgba(200, 255, 174, 0.3);
+}
+
+.path-option:hover .path-glow {
+  opacity: 0.8;
+  transform: scale(1.15);
+}
+
+/* ============================================
+   SIGNBOARD STYLING
+   ============================================ */
+
+.path-signboard {
+  background: rgba(200, 255, 174, 0.85);
+  border-radius: 2vh;
+  padding: 2.5vh 3vh;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15),
+              inset 0 2px 5px rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.path-signboard:hover {
+  transform: perspective(1000px) rotateY(-5deg);
+}
+
+.signboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  align-items: center;
+}
+
+.signboard-content i {
+  font-size: 3.5vh;
+  color: #333;
+  animation: bounce-icon 2s ease-in-out infinite;
+}
+
+.learn-path .signboard-content i {
+  color: #4e7cf4;
+}
+
+.practice-path .signboard-content i {
+  color: #f97e1c;
+}
+
+@keyframes bounce-icon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.signboard-content h2 {
+  font-size: 2.2vh;
+  color: #333;
+  margin: 0;
+  font-weight: 700;
+}
+
+.signboard-content p {
+  font-size: 1.3vh;
+  color: #555;
+  margin: 0;
+}
+
+/* ============================================
+   PATH DIRECTION ARROW
+   ============================================ */
+
+.path-direction {
+  font-size: 2.5vh;
+  color: #fee29a;
+  animation: pulse-arrow 1.5s ease-in-out infinite;
+  text-shadow: 0 0 10px rgba(254, 226, 154, 0.6);
+}
+
+@keyframes pulse-arrow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(5px);
+  }
+}
+
+/* ============================================
+   PATH LINE (Visual connector)
+   ============================================ */
+
+.path-line {
+  position: absolute;
+  bottom: -8vh;
+  width: 3px;
+  height: 8vh;
+  background: linear-gradient(180deg, rgba(254, 226, 154, 0.8), transparent);
+  border-radius: 2px;
+  animation: glow-path 2s ease-in-out infinite;
+}
+
+@keyframes glow-path {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(254, 226, 154, 0.4);
+    opacity: 0.6;
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(254, 226, 154, 0.8);
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   PATH GLOW EFFECT
+   ============================================ */
+
+.path-glow {
+  position: absolute;
+  width: 200px;
+  height: 150px;
+  background: radial-gradient(ellipse at center, rgba(200, 255, 174, 0.3), transparent);
+  border-radius: 50%;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.learn-glow {
+  background: radial-gradient(ellipse at center, rgba(78, 197, 244, 0.3), transparent);
+}
+
+.practice-glow {
+  background: radial-gradient(ellipse at center, rgba(249, 126, 28, 0.3), transparent);
+}
+
+/* ============================================
+   FOOTSTEPS ANIMATION
+   ============================================ */
+
+.footsteps-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 8;
+}
+
+.footstep {
+  position: absolute;
+  width: 3vh;
+  height: 3vh;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.footstep::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(254, 226, 154, 0.8), rgba(254, 226, 154, 0.2));
+  box-shadow: 0 0 15px rgba(254, 226, 154, 0.6),
+              inset 0 0 10px rgba(255, 255, 255, 0.4);
+  animation: footstep-glow 0.8s ease-out forwards;
+}
+
+@keyframes footstep-glow {
+  0% {
+    opacity: 1;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* ============================================
+   AUDIO ELEMENT
+   ============================================ */
+
+#backgroundMusic {
+  display: none;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .character {
+    height: 30vh;
+  }
+
+  .paths-wrapper {
+    gap: 5vw;
+    top: 28%;
+  }
+
+  .path-signboard {
+    min-width: 180px;
+    padding: 2vh 2.5vh;
+  }
+
+  .signboard-content h2 {
+    font-size: 2vh;
+  }
+
+  .signboard-content i {
+    font-size: 3vh;
+  }
+}
+
+/* Mobile (480px - 767px) */
+@media (max-width: 767px) {
+  .character {
+    height: 25vh;
+  }
+
+  .characters-section {
+    bottom: 10%;
+    gap: 1vh;
+  }
+
+  .paths-wrapper {
+    flex-direction: column;
+    gap: 4vh;
+    top: 22%;
+  }
+
+  .path-signboard {
+    min-width: 160px;
+    padding: 1.8vh 2vh;
+  }
+
+  .signboard-content h2 {
+    font-size: 1.8vh;
+  }
+
+  .signboard-content p {
+    font-size: 1.2vh;
+  }
+
+  .signboard-content i {
+    font-size: 2.5vh;
+  }
+
+  .path-direction {
+    font-size: 2vh;
+  }
+
+  .vvlogo,
+  .inclogo {
+    width: 12vw;
+  }
+
+  .vv {
+    font-size: 2.5vh;
+  }
+
+  .inc {
+    font-size: 2.5vh;
+  }
+}
+
+/* Small Mobile (less than 480px) */
+@media (max-width: 480px) {
+  .character {
+    height: 20vh;
+  }
+
+  .characters-section {
+    bottom: 8%;
+    gap: 0.5vh;
+  }
+
+  .paths-wrapper {
+    flex-direction: column;
+    gap: 3vh;
+    top: 20%;
+    width: 95%;
+  }
+
+  .path-signboard {
+    min-width: 140px;
+    padding: 1.5vh 1.8vh;
+  }
+
+  .signboard-content h2 {
+    font-size: 1.6vh;
+  }
+
+  .signboard-content p {
+    font-size: 1.1vh;
+  }
+
+  .signboard-content i {
+    font-size: 2.2vh;
+  }
+
+  .vvlogo,
+  .inclogo {
+    width: 14vw;
+  }
+
+  .vv {
+    font-size: 2.2vh;
+  }
+
+  .inc {
+    font-size: 2.2vh;
+  }
+
+  .logos {
+    margin-top: 2vh;
+  }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.hidden {
+  display: none !important;
+}
+
+/* ============================================
+   TRANSITIONS
+   ============================================ */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
