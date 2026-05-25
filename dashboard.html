@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantasy Typer - Path Selection</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+    <!-- Header with logos -->
+    <div class="vvlogo-container">
+        <img class="vvlogo" src="./assets/vv.png" alt="VV Logo" />
+    </div>
+    <div class="inclogo-container">
+        <img class="inclogo" src="./assets/ie.png" alt="IE Logo" />
+    </div>
+
+    <div class="upper">
+        <div class="logos">
+            <h1 class="vv">Sri Sathya Sai Vidya Vahini</h1>
+            <h1 class="inc">INCLUSIVE EDUCATION</h1>
+        </div>
+    </div>
+
+    <!-- Main Scene Container -->
+    <div class="scene-container">
+        <!-- Character Elements -->
+        <div class="characters-section">
+            <img src="./assets/prem.png" alt="Prem Character" class="character prem-character" />
+            <img src="./assets/shanti.png" alt="Shanti Character" class="character shanti-character" />
+        </div>
+
+        <!-- Path Selection Area -->
+        <div class="paths-wrapper">
+            <!-- Learn Path -->
+            <div class="path-option learn-path" data-destination="home.html">
+                <div class="path-signboard">
+                    <div class="signboard-content">
+                        <i class="fas fa-book"></i>
+                        <h2>Learn Mode</h2>
+                        <p>Master your typing skills</p>
+                    </div>
+                </div>
+                <div class="path-direction">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="path-line"></div>
+                <div class="path-glow learn-glow"></div>
+            </div>
+
+            <!-- Practice Path -->
+            <div class="path-option practice-path" data-destination="practise.html">
+                <div class="path-signboard">
+                    <div class="signboard-content">
+                        <i class="fas fa-gamepad"></i>
+                        <h2>Practice Mode</h2>
+                        <p>Challenge yourself freely</p>
+                    </div>
+                </div>
+                <div class="path-direction">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div class="path-line"></div>
+                <div class="path-glow practice-glow"></div>
+            </div>
+        </div>
+
+        <!-- Footsteps Container (for animation) -->
+        <div class="footsteps-container"></div>
+    </div>
+
+    <!-- Navigation Link (hidden, used for actual navigation) -->
+    <a id="nav-link" style="display: none;"></a>
+
+    <!-- Background Audio -->
+    <div>
+        <audio id="backgroundMusic" autoplay>
+            <source src="./assets/bgm.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
