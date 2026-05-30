@@ -563,13 +563,13 @@ h1 {
 }
 
 .home-link:hover {
-  background-color: #f0f0f0;
+  background-color: lab(94.02% -0.33 0.1);
   transform: scale(1.05);
 }
 
 .home-link img {
   filter: none;
-  opacity: 1 ; /* Makes white icon if your image is black */
+  opacity: 2ss ; /* Makes white icon if your image is black */
 }
 
 .home-text {
